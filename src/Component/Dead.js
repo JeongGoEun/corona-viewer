@@ -12,6 +12,7 @@ const Dead = ({totalDeath = 0, todayDeath = 0}) => {
             <View style={styles.left}>
                 <View style={styles.row}>
                     <Text style={[FONT_RED, textStyles.commonFont, textStyles.totalCase]}>{totalDeath}명</Text>
+                    <View style={{margin:'2%'}} />
                     <View style={styles.totalCaseBefore}>
                         <Text style={textStyles.totalCaseBefore}>{todayDeath>0? `+${todayDeath}` : todayDeath}명</Text>
                     </View>

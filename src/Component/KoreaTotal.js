@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { serverUrl, totalCorona } from '../url';
 import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE } from '../constant'; 
 import PropTypes from 'prop-types';
@@ -13,7 +13,17 @@ const KoreaTotal = ({totalData}) => {
 
     return (
         <View style={styles.container}>
-            <Text style={[textStyles.title, textStyles.commonFont]}>국내 현황판</Text>
+            <View style={styles.row}>
+                <Text style={[textStyles.title, textStyles.commonFont]}>국내 현황판</Text>
+                <TouchableOpacity style={styles.refresh}>
+                    <Icon
+                        name="refresh"
+                        size={20}
+                        color='black'/>
+                </TouchableOpacity>
+            </View>
+            <View style={{margin:'1%'}} />
+            <Text style={textStyles.updateTime}>{totalData?.updateTime}</Text>
             <View style={{margin:'2%'}} />
             <Infected totalCase={totalData.TotalCase} totalCaseBefore={totalData.TotalCaseBefore}/>
             <View style={{margin:'1%'}} />
@@ -32,6 +42,13 @@ const styles = StyleSheet.create({
         padding:30,
         paddingBottom: 0,
         backgroundColor: '#e8eaec'
+    },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    refresh: {
+        justifyContent: 'center'
     }
 });
 
@@ -41,12 +58,16 @@ const textStyles = StyleSheet.create({
     },
     title: {
         fontSize: standardFontSize*2.5
+    },
+    updateTime: {
+        fontSize: standardFontSize*0.8
     }
 
 });
 
 KoreaTotal.propTypes = {
     totalData: PropTypes.shape({
+        updateTime: PropTypes.string,
         TotalCase: PropTypes.string,
         TotalCaseBefore: PropTypes.string,
         TodayRecovered: PropTypes.string,
@@ -57,4 +78,3 @@ KoreaTotal.propTypes = {
 };
 
 export default KoreaTotal;
-

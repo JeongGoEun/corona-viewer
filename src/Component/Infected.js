@@ -12,6 +12,7 @@ const Infected = ({totalCase = 0, totalCaseBefore = 0}) => {
             <View style={styles.left}>
                 <View style={styles.row}>
                     <Text style={[FONT_ORANGE, textStyles.commonFont, textStyles.totalCase]}>{totalCase}명</Text>
+                    <View style={{margin:'2%'}} />
                     <View style={styles.totalCaseBefore}>
                         <Text style={textStyles.totalCaseBefore}>{totalCaseBefore>0? `+${totalCaseBefore}` : totalCaseBefore}명</Text>
                     </View>

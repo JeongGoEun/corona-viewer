@@ -12,6 +12,7 @@ const Healed = ({totalRecovered = 0, todayRecovered = 0}) => {
             <View style={styles.left}>
                 <View style={styles.row}>
                     <Text style={[FONT_GREEN, textStyles.commonFont, textStyles.totalCase]}>{totalRecovered}명</Text>
+                    <View style={{margin:'2%'}} />
                     <View style={styles.totalCaseBefore}>
                         <Text style={textStyles.totalCaseBefore}>{todayRecovered>0? `+${todayRecovered}` : todayRecovered}명</Text>
                     </View>
