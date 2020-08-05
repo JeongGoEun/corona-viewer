@@ -5,7 +5,7 @@ import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE, FONT_GREEN, FON
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const Dead = ({totalDeath = 0, todayDeath = 0}) => {
+const Dead = ({totalDeath = 0, todayDeath = 0, title='국내 사망자'}) => {
 
     return (
         <View style={styles.container}>
@@ -18,7 +18,7 @@ const Dead = ({totalDeath = 0, todayDeath = 0}) => {
                     </View>
                 </View>
                 <Text style={[textStyles.desc,FONT_GRAY]}>
-                    국내 사망자
+                    {title}
                 </Text>
             </View>
             <View style={styles.icon}>

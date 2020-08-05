@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Linking } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { serverUrl, totalCorona } from '../url';
 import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE } from '../constant'; 
 import PropTypes from 'prop-types';
@@ -9,12 +9,12 @@ import Healed from './Healed';
 import Dead from './Dead';
 import Healing from './Healing';
 
-const KoreaTotal = ({totalData}) => {
+const WorldTotal = () => {
 
     return (
         <View style={styles.container}>
             <View style={styles.row}>
-                <Text style={[textStyles.title, textStyles.commonFont]}>국내 현황판</Text>
+                <Text style={[textStyles.title, textStyles.commonFont]}>세계 현황판</Text>
                 <TouchableOpacity style={styles.refresh}>
                     <Icon
                         name="refresh"
@@ -23,13 +23,13 @@ const KoreaTotal = ({totalData}) => {
                 </TouchableOpacity>
             </View>
             <View style={{margin:'1%'}} />
-            <Text style={textStyles.updateTime}>{totalData?.updateTime}</Text>
+            <Text style={textStyles.updateTime}>''</Text>
             <View style={{margin:'2%'}} />
-            <Infected totalCase={totalData.TotalCase} totalCaseBefore={totalData.TotalCaseBefore}/>
+            <Infected totalCase='1,112,211' totalCaseBefore='10' title='전세계 확진자' />
             <View style={{margin:'1%'}} />
-            <Healed totalRecovered={totalData.TotalRecovered} todayRecovered={totalData.TodayRecovered}/>
+            <Healed totalRecovered='5,312' todayRecovered='3' title='전세계 완치자' />
             <View style={{margin:'1%'}} />
-            <Dead totalDeath={totalData.TotalDeath} todayDeath={totalData.TodayDeath}/>
+            <Dead totalDeath='500,951' todayDeath='10' title='전세계 사망자' />
             <View style={{margin:'1%'}} />
             <Text  style={{textAlign: 'right'}} onPress={() => Linking.openURL('http://localhost:3000/')}>
                 지도보기
@@ -67,16 +67,7 @@ const textStyles = StyleSheet.create({
 
 });
 
-KoreaTotal.propTypes = {
-    totalData: PropTypes.shape({
-        updateTime: PropTypes.string,
-        TotalCase: PropTypes.string,
-        TotalCaseBefore: PropTypes.string,
-        TodayRecovered: PropTypes.string,
-        TotalRecovered: PropTypes.string,
-        TotalDeath: PropTypes.string,
-        TodayDeath: PropTypes.string
-    })
+WorldTotal.propTypes = {
 };
 
-export default KoreaTotal;
+export default WorldTotal;

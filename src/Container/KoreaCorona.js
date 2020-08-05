@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import { serverUrl, totalCorona, regionCorona } from '../url';
 import KoreaTotal from '../Component/KoreaTotal';
 import KoreaRegions from '../Component/KoreaRegions';
@@ -37,10 +37,10 @@ const KoreaCorona = () => {
 
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <KoreaTotal totalData={totalData} />
             <KoreaRegions regionsData={regionsData} />
-        </View>
+        </ScrollView>
     );
 }
 

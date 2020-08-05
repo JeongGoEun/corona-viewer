@@ -5,7 +5,7 @@ import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE, FONT_GREEN } fr
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const Healed = ({totalRecovered = 0, todayRecovered = 0}) => {
+const Healed = ({totalRecovered = 0, todayRecovered = 0, title='국내 완치자'}) => {
 
     return (
         <View style={styles.container}>
@@ -18,7 +18,7 @@ const Healed = ({totalRecovered = 0, todayRecovered = 0}) => {
                     </View>
                 </View>
                 <Text style={[textStyles.desc,FONT_GRAY]}>
-                    국내 완치자
+                    {title}
                 </Text>
             </View>
             <View style={styles.icon}>
@@ -89,4 +89,3 @@ Healed.propTypes = {
 };
 
 export default Healed;
-

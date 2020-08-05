@@ -5,7 +5,7 @@ import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE } from '../const
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const Infected = ({totalCase = 0, totalCaseBefore = 0}) => {
+const Infected = ({totalCase = 0, totalCaseBefore = 0, title='국내 확진자'}) => {
 
     return (
         <View style={styles.container}>
@@ -18,7 +18,7 @@ const Infected = ({totalCase = 0, totalCaseBefore = 0}) => {
                     </View>
                 </View>
                 <Text style={[textStyles.desc,FONT_GRAY]}>
-                    국내 확진자
+                    {title}
                 </Text>
             </View>
             <View style={styles.icon}>
@@ -89,4 +89,3 @@ Infected.propTypes = {
 };
 
 export default Infected;
-
