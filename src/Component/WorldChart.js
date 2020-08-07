@@ -5,6 +5,7 @@ import { Chart } from "react-google-charts";
 import { standardFontSize } from '../constant';
 import { worldDataByDate, worldDataByRegion } from '../sampleData';
 import ChartLoading from './ChartLoading';
+import Swiper from 'react-native-swiper/src';
 
 const WorldChart= () => {
 
@@ -19,8 +20,7 @@ const WorldChart= () => {
     console.log(worldRankData)
     
     return (
-        <ScrollView style={styles.container}>
-            
+        <Swiper style={styles.container} showsButtons showsPagination={false}>
             <View style={styles.chart}>
                 <Text style={textStyles.title}>국가별 발병 세계 지도(클릭시 상세정보)</Text>
                 <Chart
@@ -82,24 +82,25 @@ const WorldChart= () => {
                     rootProps={{ 'data-testid': '1' }}/>
             </View>
 
-        </ScrollView>
+        </Swiper>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex:1
     },
     chart: {
-        margin: 5,
         backgroundColor: 'white'
     }
 });
 
 const textStyles = StyleSheet.create({
     title: {
-        fontSize:standardFontSize*1.2,
-        padding: 3
+        fontSize:standardFontSize*1.5,
+        padding: 5,
+        color: '#212529',
+        fontWeight: "700"
     }
 });
 
