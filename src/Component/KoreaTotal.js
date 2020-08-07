@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Linking } from 'react-native';
 import { serverUrl, totalCorona } from '../url';
-import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE } from '../constant'; 
+import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE } from '../constant';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Infected from './Infected';
@@ -9,22 +9,24 @@ import Healed from './Healed';
 import Dead from './Dead';
 import Healing from './Healing';
 
-const KoreaTotal = ({totalData}) => {
+const KoreaTotal = ({ totalData }) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.row}>
+            <View style={styles.header}>
                 <Text style={[textStyles.title, textStyles.commonFont]}>국내 현황판</Text>
-                <TouchableOpacity style={styles.refresh}>
-                    <Icon
-                        name="refresh"
-                        size={20}
-                        color='black'/>
-                </TouchableOpacity>
             </View>
             <View style={{margin:'1%'}} />
-            <Text style={textStyles.updateTime}>{totalData?.updateTime}</Text>
-            <View style={{margin:'2%'}} />
+            <View style={styles.row}>
+                <Text style={textStyles.updateTime}>{totalData?.updateTime}</Text>
+                <TouchableOpacity style={styles.refresh}>
+                        <Icon
+                            name="refresh"
+                            size={10}
+                            color='black'/>
+                    </TouchableOpacity>
+            </View> 
+            <View style={{margin:'1%'}} />
             <Infected totalCase={totalData.TotalCase} totalCaseBefore={totalData.TotalCaseBefore}/>
             <View style={{margin:'1%'}} />
             <Healed totalRecovered={totalData.TotalRecovered} todayRecovered={totalData.TodayRecovered}/>
@@ -40,10 +42,13 @@ const KoreaTotal = ({totalData}) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:'white',
-        padding:30,
+        //backgroundColor: 'white',
+        padding: 30,
         paddingBottom: 0,
         backgroundColor: '#e8eaec'
+    },
+    dataContainer: {
+
     },
     row: {
         flexDirection: 'row',
@@ -56,15 +61,14 @@ const styles = StyleSheet.create({
 
 const textStyles = StyleSheet.create({
     commonFont: {
-        fontWeight:'600'
+        fontWeight: '600'
     },
     title: {
-        fontSize: standardFontSize*2.5
+        fontSize: standardFontSize * 2.5
     },
     updateTime: {
-        fontSize: standardFontSize*0.8
+        fontSize: standardFontSize * 0.8
     }
-
 });
 
 KoreaTotal.propTypes = {

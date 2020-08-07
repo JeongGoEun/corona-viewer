@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView, TouchableOpacity, Text } from 'react-native';
 import { serverUrl, totalCorona, regionCorona } from '../url';
+
 import KoreaTotal from '../Component/KoreaTotal';
 import KoreaRegions from '../Component/KoreaRegions';
+import KoreaCharts from '../Component/KoreaCharts';
 
 const KoreaCorona = () => {
 
@@ -33,15 +35,20 @@ const KoreaCorona = () => {
             .catch(err => console.log(err))
     },[])
 
-
-
-
     return (
         <ScrollView style={styles.container}>
             <KoreaTotal totalData={totalData} />
-            <KoreaRegions regionsData={regionsData} />
+            <KoreaCharts chartData={{}} />
+            {/* <KoreaRegions regionsData={regionsData} /> */}
         </ScrollView>
     );
+
+    // return (
+    //     <ScrollView style={styles.container}>
+    //         <KoreaTotal totalData={totalData} />
+    //         <KoreaRegions regionsData={regionsData} />
+    //     </ScrollView>
+    // );
 }
 
 const styles = StyleSheet.create({
