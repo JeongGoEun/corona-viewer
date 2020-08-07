@@ -37,7 +37,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         height: screenHeight*0.13,
         justifyContent:'center',
-        padding:20
+        padding:20,
+        borderRadius: 7,
+
     },
     left: {
         flex: 9,

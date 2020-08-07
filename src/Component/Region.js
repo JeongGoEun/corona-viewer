@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
         padding: 15,
         backgroundColor: 'white',
         height: screenHeight*0.25,
-        marginBottom: 30
+        marginBottom: 30,
+        borderRadius: 7,
     },
     titleRow: {
         flexDirection: 'row',
