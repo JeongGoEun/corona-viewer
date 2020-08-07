@@ -2,13 +2,15 @@ import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import WorldTotal from '../Component/WorldTotal';
 import WorldCountries from '../Component/WorldCountries';
+import WorldChart from '../Component/WorldChart';
 
 const WorldCorona = () => {
 
     return (
         <ScrollView style={styles.container}>
             <WorldTotal />
-            <WorldCountries />
+            <WorldChart />
+            {/* <WorldCountries /> */}
         </ScrollView>
     );
 }

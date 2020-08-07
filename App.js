@@ -16,14 +16,6 @@ const App = () => {
         <NavigationContainer>
             <Tab.Navigator>
                 <Tab.Screen 
-                    name="설정" 
-                    component={Setting}
-                    options={{
-                        tabBarIcon: ({ color, size }) => (
-                            <Icon name="move-h-a" size={size} color={color} />
-                        ),
-                        tabBarLabel: '설정'}} />
-                <Tab.Screen 
                     name="Home" 
                     component={Home} 
                     options={{
@@ -48,6 +40,14 @@ const App = () => {
                             <Icon name="world-o" size={size} color={color} />
                         ),
                         tabBarLabel: '세계현황'}}/>
+                <Tab.Screen 
+                    name="설정" 
+                    component={Setting}
+                    options={{
+                        tabBarIcon: ({ color, size }) => (
+                            <Icon name="move-h-a" size={size} color={color} />
+                        ),
+                        tabBarLabel: '설정'}} />
                 
             </Tab.Navigator>
         </NavigationContainer>

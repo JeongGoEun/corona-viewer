@@ -38,8 +38,8 @@ const Setting = () => {
                 />
             </View>
                 <Chart
-                    width={'100%'}
-                    height={'100%'}
+                    width={'150%'}
+                    height={'200%'}
                     chartType="GeoChart"
                     // chartLanguage='ko'
                     data={[
