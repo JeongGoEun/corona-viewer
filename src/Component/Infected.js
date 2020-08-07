@@ -35,9 +35,9 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         backgroundColor: 'white',
-        height: screenHeight*0.13,
+        height: screenHeight*0.12,
         justifyContent:'center',
-        padding:20
+        padding:10
     },
     left: {
         flex: 9,
