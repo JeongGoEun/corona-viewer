@@ -54,6 +54,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+    header: {
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        height: screenHeight*0.08,
+        alignItems: 'center'
+    },
     refresh: {
         justifyContent: 'center'
     }
