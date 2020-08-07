@@ -6,7 +6,6 @@ import Swiper from 'react-native-swiper/src';
 
 // example
 import WorldTotal from '../Component/WorldTotal';
-import WorldCountries from '../Component/WorldCountries';
 import WorldChart from '../Component/WorldChart';
 
 import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE, FONT_GREEN, FONT_RED } from '../constant';
