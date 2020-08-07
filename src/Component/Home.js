@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'orange',
         padding: 4,
         paddingHorizontal: 10,
+        marginLeft: 9
     },
     titleContainer2: {
         borderWidth: 2,
@@ -95,6 +96,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'red',
         padding: 4,
         paddingHorizontal: 10,
+        marginLeft: 9
     },
     rowContainer: {
         borderWidth: 2,
