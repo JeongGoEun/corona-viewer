@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Image} from 'react-native';
 import PropTypes from 'prop-types';
 import { standardFontSize, screenHeight, FONT_GRAY } from '../constant';
 
+import Chart from "react-google-charts";
+
 const Home = () => {
 
     return (
@@ -56,6 +58,7 @@ const Home = () => {
                 </View>
             </View>
             </View>
+
         </View>
     );
 }
