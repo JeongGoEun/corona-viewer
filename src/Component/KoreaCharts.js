@@ -14,25 +14,29 @@ import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE, FONT_GREEN, FON
 
 const KoreaCharts = ({ chartData }) => {
     return (
-        <Swiper style={styles.wrapper} showsButtons={true}>
-            <View style={styles.slideContainer}>
-                <WorldChart />
-            </View>
-            <View style={styles.slideContainer}>
-                <WorldChart />
-            </View>
-            <View style={styles.slideContainer}>
-                <WorldChart />
-            </View>
-        </Swiper>
+        <View style={styles.wrapper}>
+            <Swiper showsButtons={true}>
+                <View style={styles.slideContainer}>
+                    <Text>TITLE 1</Text>
+                    <WorldChart />
+                </View>
+                <View style={styles.slideContainer}>
+                    <Text>TITLE 2</Text>
+                    <WorldChart />
+                </View>
+                <View style={styles.slideContainer}>
+                    <Text>TITLE 3</Text>
+                    <WorldChart />
+                </View>
+            </Swiper>
+        </View>
+        
     );
 }
 
 const styles = StyleSheet.create({
     wrapper: {
-        flex: 1,
-        backgroundColor: '#e8eaec',
-        height: screenHeight * 0.8,
+        height: screenHeight*0.8,
     },
     slideContainer: {
         flex: 1,

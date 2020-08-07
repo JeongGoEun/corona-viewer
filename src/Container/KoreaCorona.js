@@ -39,7 +39,7 @@ const KoreaCorona = () => {
         <ScrollView style={styles.container}>
             <KoreaTotal totalData={totalData} />
             <KoreaCharts chartData={{}} />
-            {/* <KoreaRegions regionsData={regionsData} /> */}
+            <KoreaRegions regionsData={regionsData} />
         </ScrollView>
     );
 
