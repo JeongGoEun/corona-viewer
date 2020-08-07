@@ -13,18 +13,20 @@ const KoreaTotal = ({totalData}) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.row}>
+            <View style={styles.header}>
                 <Text style={[textStyles.title, textStyles.commonFont]}>국내 현황판</Text>
-                <TouchableOpacity style={styles.refresh}>
-                    <Icon
-                        name="refresh"
-                        size={20}
-                        color='black'/>
-                </TouchableOpacity>
             </View>
             <View style={{margin:'1%'}} />
-            <Text style={textStyles.updateTime}>{totalData?.updateTime}</Text>
-            <View style={{margin:'2%'}} />
+            <View style={styles.row}>
+                <Text style={textStyles.updateTime}>{totalData?.updateTime}</Text>
+                <TouchableOpacity style={styles.refresh}>
+                        <Icon
+                            name="refresh"
+                            size={10}
+                            color='black'/>
+                    </TouchableOpacity>
+            </View> 
+            <View style={{margin:'1%'}} />
             <Infected totalCase={totalData.TotalCase} totalCaseBefore={totalData.TotalCaseBefore}/>
             <View style={{margin:'1%'}} />
             <Healed totalRecovered={totalData.TotalRecovered} todayRecovered={totalData.TodayRecovered}/>
@@ -41,13 +43,20 @@ const KoreaTotal = ({totalData}) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor:'white',
-        padding:30,
+        padding:5,
         paddingBottom: 0,
         backgroundColor: '#e8eaec'
     },
     row: {
         flexDirection: 'row',
         justifyContent: 'space-between'
+    },
+    header: {
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        height: screenHeight*0.08,
+        alignItems: 'center'
     },
     refresh: {
         justifyContent: 'center'

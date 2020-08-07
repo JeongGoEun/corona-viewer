@@ -13,27 +13,26 @@ const WorldTotal = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.row}>
+            <View style={styles.header}>
                 <Text style={[textStyles.title, textStyles.commonFont]}>세계 현황판</Text>
+            </View>
+            <View style={{margin:'1%'}} />
+            <View style={styles.row}>
+                <Text style={textStyles.updateTime}>코로나바이러스감염증-19 세계 발생현황 (8.7 00시 기준)</Text>
                 <TouchableOpacity style={styles.refresh}>
-                    <Icon
-                        name="refresh"
-                        size={20}
-                        color='black'/>
+                        <Icon
+                            name="refresh"
+                            size={10}
+                            color='black'/>
                 </TouchableOpacity>
             </View>
             <View style={{margin:'1%'}} />
-            <Text style={textStyles.updateTime}>''</Text>
-            <View style={{margin:'2%'}} />
             <Infected totalCase='1,112,211' totalCaseBefore='10' title='전세계 확진자' />
             <View style={{margin:'1%'}} />
             <Healed totalRecovered='5,312' todayRecovered='3' title='전세계 완치자' />
             <View style={{margin:'1%'}} />
             <Dead totalDeath='500,951' todayDeath='10' title='전세계 사망자' />
             <View style={{margin:'1%'}} />
-            <Text  style={{textAlign: 'right'}} onPress={() => Linking.openURL('http://localhost:3000/')}>
-                지도보기
-            </Text>
         </View>
     );
 }
@@ -41,13 +40,20 @@ const WorldTotal = () => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor:'white',
-        padding:30,
+        padding:5,
         paddingBottom: 0,
         backgroundColor: '#e8eaec'
     },
     row: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent:'space-between'
+    },
+    header: {
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        height: screenHeight*0.08,
+        alignItems: 'center'
     },
     refresh: {
         justifyContent: 'center'
