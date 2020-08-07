@@ -9,6 +9,7 @@ const Setting = () => {
     return (
         <ScrollView>
             <View style={styles.chart}>
+            <Text style={textStyles.title}>한국 확진자수 증가추이</Text>
             <Chart
                 width='100%'
                 height='100%'
@@ -27,7 +28,6 @@ const Setting = () => {
                 ]}
                 
                 options={{
-                    title: '한국 확진자수 증가추이',
                     legend: {position: 'top'},
                     chartArea: {'width':'80%', 'height':'80%'},
                     series: {
@@ -38,8 +38,8 @@ const Setting = () => {
                 />
             </View>
                 <Chart
-                    width={'150%'}
-                    height={'200%'}
+                    width={'10%'}
+                    height={'100%'}
                     chartType="GeoChart"
                     // chartLanguage='ko'
                     data={[
@@ -65,11 +65,16 @@ const Setting = () => {
 
 const styles = StyleSheet.create({
     chart: {
-        margin: 5
+        margin: 5,
+        backgroundColor: 'white'
     }
 });
 
 const textStyles = StyleSheet.create({
+    title: {
+        fontSize:standardFontSize*1.2,
+        padding: 3
+    }
 });
 
 Setting.propTypes = {
