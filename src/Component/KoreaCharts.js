@@ -38,7 +38,7 @@ const KoreaCharts = ({ regionsData, totalData }) => {
         ];
     }).sort((a,b) => b[1]-a[1]).filter(word => word[0] != '검역').slice(0,5); //TOP 5
 
-    console.log('KoreaCharts: ', koreaMarkerdata, koreaBarchartData);
+    //console.log('KoreaCharts: ', koreaMarkerdata, koreaBarchartData);
 
     return (
         <View style={styles.wrapper}>
@@ -46,32 +46,33 @@ const KoreaCharts = ({ regionsData, totalData }) => {
                 <View style={styles.slideContainer}>
                     <Text style={textStyles.title}>한국 확진자수 Geo chart</Text>
                     <Chart
-                        width={screenWidth * 0.8}
+                        //width={700}
                         height={screenHeight * 0.7}
                         chartType="GeoChart"
                         loader={<div>Loading Chart</div>}
                         data={[
-                            ['Country', 'Value'],
+                            ['Code', 'Value'],
                             ['KR-11', 36],
-                            ['KR-26', 10],
+                            //['KR-26', 10],
                             //...koreaMarkerdata
                         ]}
                         options={{
                             region: 'KR',
-                            colorAxis: { colors: ['#FDF5E6', '#FFE4E1', '#DA70D6'] },
-                            backgroundColor: '#fff',
-                            datalessRegionColor: '#FFFAFA',
-                            defaultColor: '#f5f5f5',
-                            displayMode: 'regions'
+                            // colorAxis: { colors: ['green', 'blue'] },
+                            // backgroundColor: '#fff',
+                            // datalessRegionColor: '#FFFAFA',
+                            // defaultColor: '#f5f5f5',
+                            displayMode: 'regions',
+                            
                         }}
                         mapsApiKey="AIzaSyBMdWulC9vKMjat5WfDVp00AYsi-DLpB8Y"
-                        rootProps={{ 'data-testid': '4' }}
+                        rootProps={{ 'data-testid': '1' }}
                     />
                 </View>
 
                 <View style={styles.slideContainer}>
                     <Chart
-                        width={screenWidth * 0.8}
+                        width={screenWidth * 0.9}
                         height={screenHeight * 0.8}
                         chartType="BarChart"
                         loader={<div>Loading Chart</div>}
@@ -93,7 +94,7 @@ const KoreaCharts = ({ regionsData, totalData }) => {
                 <View style={styles.slideContainer}>
                     <Text style={textStyles.title}>한국 확진자수 Geo chart</Text>
                     <Chart
-                        width={screenWidth * 0.8}
+                        //width={screenWidth * 0.8}
                         height={screenHeight * 0.7}
                         chartType="GeoChart"
                         loader={<div>Loading Chart</div>}
@@ -127,11 +128,12 @@ const styles = StyleSheet.create({
     },
     slideContainer: {
         flex: 1,
-        paddingHorizontal: 10,
+        padding: 10,
         backgroundColor: '#fff',
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
+        overflow: 'hidden'
     },
     text: {
         color: '#fff',
