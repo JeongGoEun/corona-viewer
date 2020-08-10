@@ -2900,18 +2900,6 @@ export const worldDataByRegion = [
 ];
 
 export const koreaDataByRegion = {
-    "resultCode": "0",
-    "resultMessage": "정상 처리되었습니다.",
-    "korea": {
-        "countryName": "합계",
-        "newCase": "8",
-        "totalCase": "10,661",
-        "recovered": "8,042",
-        "death": "234",
-        "percentage": "20.56",
-        "newFcase": "5",
-        "newCcase": "3"
-    },
     "seoul": {
         "countryName": "서울",
         "newCase": "2",

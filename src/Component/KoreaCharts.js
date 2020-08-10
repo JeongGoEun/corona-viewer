@@ -8,73 +8,127 @@ import { Chart } from "react-google-charts";
 // example
 import { koreaDataByRegion } from '../sampleData';
 
-import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE, FONT_GREEN, FONT_RED } from '../constant';
+import { standardFontSize, screenHeight, screenWidth } from '../constant';
 
 
 const KoreaCharts = ({ regionsData, totalData }) => {
-    //console.log('koreacDataByRegion: ', koreaDataByRegion);
+    
+    // for test
+    //const chartData = koreaDataByRegion;
+    const chartData = regionsData;
 
     // 한국 지역 코로나 데이터 - map의 value들을 arr로 변환해서
-    const koreaRegiondata = Object.keys(koreaDataByRegion).slice(3,20).map((key) => {
-        
-        //맨 처음이랑 맨 마지막은 제거해야 함 - 합계, 검역 부분
-        console.log('koreacDataByRegion: ', koreaDataByRegion[key].countryName, koreaDataByRegion[key].totalCase, koreaDataByRegion[key].recovered);
-        return [koreaDataByRegion[key].countryName, parseInt(koreaDataByRegion[key].totalCase), parseInt(koreaDataByRegion[key].recovered)];
-    })
-    console.log(koreaRegiondata);
+    const koreaMarkerdata = Object.keys(chartData).slice(3,20).map((key) => {
+        return [
+            chartData[key].countryName, 
+            parseInt(chartData[key].totalCase.replace(",","")),
+            parseInt(chartData[key].recovered.replace(",",""))
+        ];
+    }).sort((a, b) => b[1] - a[1]).filter(word => word[0] != '검역');
 
-    //console.log(Array.from(koreaDataByRegion.values()));
+    const koreaBarchartData = Object.keys(chartData).map((key) => {
+        var total = parseInt(chartData[key].totalCase.replace(",",""));
+        var recover = parseInt(chartData[key].recovered.replace(",",""));
+        var death = parseInt(chartData[key].death.replace(",",""));
+        return [
+            chartData[key].countryName,
+            total,
+            recover,
+            death
+        ];
+    }).sort((a,b) => b[1]-a[1]).filter(word => word[0] != '검역').slice(0,5); //TOP 5
+
+    console.log('KoreaCharts: ', koreaMarkerdata, koreaBarchartData);
+
     return (
         <View style={styles.wrapper}>
             <Swiper showsButtons={true}>
                 <View style={styles.slideContainer}>
-                <Text style={textStyles.title}>한국 확진자수 Geo chart</Text>
-                <Chart
-                    //width={'470px'}
-                    //height={'270px'}
-                    chartType="GeoChart"
-                    data={[
-                        ['City', '확진자', '완치자'],
-                        ...koreaRegiondata
-                    ]}
-                    options={{
-                        region: 'KR',
-                        colorAxis: { colors: ['#FDF5E6', '#FFE4E1', '#DA70D6'] },
-                        backgroundColor: '#81d4fa',
-                        datalessRegionColor: '#FFFAFA',
-                        defaultColor: '#f5f5f5',
-                        displayMode: 'markers'
-                    }}
-                    // Note: you will need to get a mapsApiKey for your project.
-                    // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-                    mapsApiKey="AIzaSyBMdWulC9vKMjat5WfDVp00AYsi-DLpB8Y"
-                    rootProps={{ 'data-testid': '2' }}
-                />
-                    
+                    <Text style={textStyles.title}>한국 확진자수 Geo chart</Text>
+                    <Chart
+                        width={screenWidth * 0.8}
+                        height={screenHeight * 0.7}
+                        chartType="GeoChart"
+                        loader={<div>Loading Chart</div>}
+                        data={[
+                            ['Country', 'Value'],
+                            ['KR-11', 36],
+                            ['KR-26', 10],
+                            //...koreaMarkerdata
+                        ]}
+                        options={{
+                            region: 'KR',
+                            colorAxis: { colors: ['#FDF5E6', '#FFE4E1', '#DA70D6'] },
+                            backgroundColor: '#fff',
+                            datalessRegionColor: '#FFFAFA',
+                            defaultColor: '#f5f5f5',
+                            displayMode: 'regions'
+                        }}
+                        mapsApiKey="AIzaSyBMdWulC9vKMjat5WfDVp00AYsi-DLpB8Y"
+                        rootProps={{ 'data-testid': '4' }}
+                    />
                 </View>
+
                 <View style={styles.slideContainer}>
-                    <Text>TITLE 2</Text>
-                    
+                    <Chart
+                        width={screenWidth * 0.8}
+                        height={screenHeight * 0.8}
+                        chartType="BarChart"
+                        loader={<div>Loading Chart</div>}
+                        data={[
+                            ['지역', '확진자', '완치자', '사망자'],
+                            ...koreaBarchartData
+                        ]}
+                        options={{
+                            title: '한국 지역 코로나 발생 수 TOP 5',
+                            chartArea: { width: '50%' },
+                            hAxis: {
+                                minValue: 0,
+                            },
+                        }}
+                        rootProps={{ 'data-testid': '3' }}
+                    />
                 </View>
+
                 <View style={styles.slideContainer}>
-                    <Text>TITLE 3</Text>
-                    
+                    <Text style={textStyles.title}>한국 확진자수 Geo chart</Text>
+                    <Chart
+                        width={screenWidth * 0.8}
+                        height={screenHeight * 0.7}
+                        chartType="GeoChart"
+                        loader={<div>Loading Chart</div>}
+                        data={[
+                            ['City', '확진자', '완치자'],
+                            ...koreaMarkerdata
+                        ]}
+                        options={{
+                            region: 'KR',
+                            colorAxis: { colors: ['#FDF5E6', '#FFE4E1', '#DA70D6'] },
+                            backgroundColor: '#fff',
+                            datalessRegionColor: '#FFFAFA',
+                            defaultColor: '#f5f5f5',
+                            displayMode: 'markers'
+                        }}
+                        mapsApiKey="AIzaSyBMdWulC9vKMjat5WfDVp00AYsi-DLpB8Y"
+                        rootProps={{ 'data-testid': '2' }}
+                    />
                 </View>
             </Swiper>
         </View>
-        
+
     );
 }
 
 const styles = StyleSheet.create({
     wrapper: {
-        height: screenHeight*0.8,
+        height: screenHeight * 0.8,
+        padding: 10,
+        backgroundColor: '#e8eaec'
     },
     slideContainer: {
         flex: 1,
-        paddingHorizontal:10,
-        backgroundColor: '#e8eaec',
-        borderWidth: 1,
+        paddingHorizontal: 10,
+        backgroundColor: '#fff',
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
