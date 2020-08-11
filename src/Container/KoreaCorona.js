@@ -6,10 +6,14 @@ import KoreaTotal from '../Component/KoreaTotal';
 import KoreaRegions from '../Component/KoreaRegions';
 import KoreaCharts from '../Component/KoreaCharts';
 
+// for test
+import { koreaDataByDay } from '../sampleData'
+
 const KoreaCorona = () => {
 
     const [totalData, setTotalData] = useState({});
     const [regionsData, setRegionsData] = useState({});
+    
 
     useEffect(()=> {
         fetch(serverUrl + totalCorona,
@@ -38,7 +42,7 @@ const KoreaCorona = () => {
     return (
         <ScrollView style={styles.container}>
             <KoreaTotal totalData={totalData} />
-            <KoreaCharts regionsData={regionsData} />
+            <KoreaCharts regionsData={regionsData} daysData={koreaDataByDay}/>
             <KoreaRegions regionsData={regionsData} />
         </ScrollView>
     );

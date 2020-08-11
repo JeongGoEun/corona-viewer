@@ -11,12 +11,15 @@ import { ScrollView } from 'react-native-gesture-handler';
 // for test
 import { koreaDataByRegion } from '../sampleData';
 
-const KoreaCharts = ({ regionsData }) => {
+/**
+ * @param { Object } regionsData 지역별 코로나 현황 데이터
+ * @param { Array } daysData 일일별 코로나 확진자 수 데이터
+ */
+const KoreaCharts = ({ regionsData, daysData }) => {
     // for test
-    const chartData = koreaDataByRegion;
-    //const chartData = regionsData;
+    //const chartData = koreaDataByRegion;
+    const chartData = regionsData;
 
-    // 한국 지역 코로나 데이터 - map의 value들을 arr로 변환해서
     const koreaMarkerdata = Object.keys(chartData).slice(3, 20).map((key) => {
         return [
             chartData[key].countryName,
@@ -117,7 +120,7 @@ const KoreaCharts = ({ regionsData }) => {
                         ]}
                         options={{
                             region: 'KR',
-                            colorAxis: { colors: ['#FDF5E6', '#FFE4E1', '#DA70D6'] },
+                            colorAxis: { colors: ['#FADBD8', '#EC7063', '#B03A2E'] },
                             backgroundColor: '#fff',
                             datalessRegionColor: '#85C1E9',
                             defaultColor: '#f5f5f5',
@@ -171,7 +174,7 @@ const textStyles = StyleSheet.create({
     },
     header: {
         fontSize: 15,
-        fontWeight: 600,
+        fontWeight: '600',
         color: 'red'
     },
     progressText:{

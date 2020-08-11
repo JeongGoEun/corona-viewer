@@ -20,7 +20,7 @@ const WorldChart= ({worldMapData}) => {
         return [data.Name, data['확진자수'], data['사망자수'], data['완치자수']]
     })
 
-    console.log(worldRankData)
+    //console.log(worldRankData)
 
     return (
         <View style={styles.wrapper}>
@@ -125,7 +125,7 @@ const textStyles = StyleSheet.create({
     },
     header: {
         fontSize: 15,
-        fontWeight: 600,
+        fontWeight: '600',
         color: 'red'
     }
 });
