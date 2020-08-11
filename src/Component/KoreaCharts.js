@@ -47,9 +47,9 @@ const KoreaCharts = ({ regionsData }) => {
             <View style={styles.progressContainer} key={chartData[key].countryName}>
                 <Text style={{fontWeight: '600'}}>[{chartData[key].countryName}] {total}명</Text>
                 <View style={{flexDirection:'row', marginVertical: 3}}>
-                    <Text style={styles.progressText}>( 격리자수: {isolation} / </Text>
-                    <Text style={styles.progressText}>완치자수: {recover} / </Text>
-                    <Text style={styles.progressText}>사망자수: {death} )</Text>
+                    <Text style={textStyles.progressText}>( 격리자수: {isolation} / </Text>
+                    <Text style={textStyles.progressText}>완치자수: {recover} / </Text>
+                    <Text style={textStyles.progressText}>사망자수: {death} )</Text>
                 </View>
                 <ProgressBar
                     backgroundBarStyle={{ height: 15 }}
@@ -74,18 +74,19 @@ const KoreaCharts = ({ regionsData }) => {
 
     return (
         <View style={styles.wrapper}>
-            <View style={styles.localTitle}>
-                <Text style={textStyles.localTitle}>지역 별 상세현황</Text>
+            <View style={styles.header}>
+                <Text style={textStyles.header}>지역별 상세현황 차트</Text>
             </View>
-            <Swiper showsButtons={true}>
-                <ScrollView style={{height: screenHeight * 0.8}}>
+            <Swiper showsButtons showsPagination={false}>
+                <ScrollView style={{height: screenHeight * 0.7}}>
                     {getProgressCharts}
                 </ScrollView>
 
-                <View style={styles.slideContainer}>
+                <View style={styles.chartContainer}>
+                    <Text style={textStyles.title}>한국 지역 코로나 발생 수 TOP 5</Text>
                     <Chart
-                        width={screenWidth * 0.9}
-                        height={screenHeight * 0.8}
+                        width='100%'
+                        height='100%'
                         chartType="BarChart"
                         loader={<div>Loading Chart</div>}
                         data={[
@@ -93,8 +94,8 @@ const KoreaCharts = ({ regionsData }) => {
                             ...koreaBarchartData
                         ]}
                         options={{
-                            title: '한국 지역 코로나 발생 수 TOP 5',
-                            chartArea: { width: '50%' },
+                            chartArea: { width: '75%' },
+                            legend: { position: 'top' },
                             hAxis: {
                                 minValue: 0,
                             },
@@ -103,11 +104,11 @@ const KoreaCharts = ({ regionsData }) => {
                     />
                 </View>
 
-                <View style={styles.slideContainer}>
+                <View style={styles.chartContainer}>
                     <Text style={textStyles.title}>한국 확진자수 Geo chart</Text>
                     <Chart
-                        //width={screenWidth * 0.8}
-                        height={screenHeight * 0.7}
+                        width='100%'
+                        height='100%'
                         chartType="GeoChart"
                         loader={<div>Loading Chart</div>}
                         data={[
@@ -134,47 +135,32 @@ const KoreaCharts = ({ regionsData }) => {
 
 const styles = StyleSheet.create({
     wrapper: {
-        height: screenHeight * 0.8,
+        height: screenHeight*0.7,
         padding: 10,
-        backgroundColor: '#e8eaec'
+        marginVertical: 20,
     },
-    slideContainer: {
-        flex: 1,
-        padding: 10,
-        marginHorizontal: 20,
-        backgroundColor: '#fff',
-        borderRadius: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-        overflow: 'hidden'
-    },
-    progressContainer:{
-        backgroundColor:'#fff',
-        marginHorizontal: 20,
-        marginBottom: 10,
-        padding: 10,
-        borderRadius: 5,
-    },
-    localTitle: {
-        marginHorizontal: 20, 
-        backgroundColor:'#F4F6F6', 
+    header: {
+        backgroundColor:'#F8F9F9',
         padding: 10,
         marginBottom: 10,
         alignItems: 'center',
         borderWidth: 2,
         borderColor: 'gray',
         borderRadius: 3,
+        height: screenHeight*0.06,
     },
-    text: {
-        color: '#fff',
-        fontSize: 30,
-        fontWeight: 'bold'
+    chartContainer: {
+        backgroundColor: '#fff',
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: screenHeight * 0.6,
     },
-    progressText:{
-        fontSize: 5,
-    },
-    chart: {
-
+    progressContainer:{
+        backgroundColor:'#fff',
+        marginBottom: 10,
+        padding: 10,
+        borderRadius: 5,
     },
 });
 
@@ -183,11 +169,15 @@ const textStyles = StyleSheet.create({
         fontSize: standardFontSize * 1.2,
         padding: 3
     },
-    localTitle: {
+    header: {
         fontSize: 15,
         fontWeight: 600,
         color: 'red'
-    }
+    },
+    progressText:{
+        fontSize: 5,
+        color: '#808B96',
+    },
 });
 
 KoreaCharts.propTypes = {

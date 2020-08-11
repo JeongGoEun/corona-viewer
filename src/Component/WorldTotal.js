@@ -39,22 +39,22 @@ const WorldTotal = () => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:'white',
-        padding:5,
+        padding:10,
         paddingBottom: 0,
-        backgroundColor: '#e8eaec',
     },
     row: {
         flexDirection: 'row',
         justifyContent:'space-between'
     },
     header: {
-        backgroundColor: 'white',
+        borderWidth: 2,
+        borderColor: 'gray',
+        borderRadius: 3,
+        backgroundColor: '#F8F9F9',
         flexDirection: 'row',
         justifyContent: 'center',
         height: screenHeight*0.08,
-        alignItems: 'center',
-        borderRadius: 7,
+        alignItems: 'center'
     },
     refresh: {
         justifyContent: 'center'

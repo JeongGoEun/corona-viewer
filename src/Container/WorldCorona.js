@@ -6,10 +6,10 @@ import WorldChart from '../Component/WorldChart';
 const WorldCorona = () => {
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <WorldTotal />
             <WorldChart />
-        </View>
+        </ScrollView>
     );
 }
 

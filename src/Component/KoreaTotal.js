@@ -42,10 +42,8 @@ const KoreaTotal = ({ totalData }) => {
 
 const styles = StyleSheet.create({
     container: {
-        //backgroundColor: 'white',
         padding: 10,
         paddingBottom: 0,
-        backgroundColor: '#e8eaec'
     },
     dataContainer: {
 
@@ -58,7 +56,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'gray',
         borderRadius: 3,
-        backgroundColor: '#F4F6F6',
+        backgroundColor: '#F8F9F9',
         flexDirection: 'row',
         justifyContent: 'center',
         height: screenHeight*0.08,
