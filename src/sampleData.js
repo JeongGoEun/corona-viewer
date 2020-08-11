@@ -1226,7 +1226,7 @@ export const worldDataByRegion = [
         "완치자수": 387316
     },
     {
-        "Name": "멕시코",
+        "Name": "Mexico",
         "Name_ch": "墨西哥",
         "Name_en": "Mexico",
         "확진자수": 462690,
@@ -2802,7 +2802,7 @@ export const worldDataByRegion = [
         "완치자수": 16
     },
     {
-        "Name": "Greenland",
+        "Name": "그린란드",
         "Name_ch": "",
         "Name_en": "Greenland",
         "확진자수": 14,

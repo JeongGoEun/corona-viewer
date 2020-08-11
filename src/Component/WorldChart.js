@@ -7,9 +7,12 @@ import { worldDataByDate, worldDataByRegion } from '../sampleData';
 import ChartLoading from './ChartLoading';
 import Swiper from 'react-native-swiper/src';
 
-const WorldChart = () => {
+const WorldChart= ({worldMapData}) => {
 
-    const worldMapData = worldDataByRegion.map((data) => {
+    // const worldMapDataList = worldMapData.map((data) => {
+    //     return [data.Name, data.totalCases]
+    // })
+    const worldMapDataList = worldDataByRegion.map((data) => {
         return [data.Name, data['확진자수']]
     })
 
@@ -34,7 +37,7 @@ const WorldChart = () => {
                         loader={<ChartLoading />}
                         data={[
                             ['Country', '확진자'],
-                            ...worldMapData
+                            ...worldMapDataList
                         ]}
                         options={{
                             colorAxis: { colors: ['#ffe2ed', 'red'] }
