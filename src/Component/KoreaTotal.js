@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     header: {
+        borderRadius: 7,
         backgroundColor: 'white',
         flexDirection: 'row',
         justifyContent: 'center',

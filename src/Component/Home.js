@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
-import { standardFontSize, screenHeight, FONT_GRAY, screenWidth } from '../constant';
-import PreventionRuleModal from '../Modal/PreventionRuleModal';
-import SymptomModal from '../Modal/SymptomModal';
+import { standardFontSize, screenHeight, FONT_GRAY } from '../constant';
+
+import Chart from "react-google-charts";
 
 const Home = () => {
-
-    const [showPreventionRule, setShowPreventionRule] = useState(false)
-    const [showSymptom, setSymptom] = useState(false)
-
 
     return (
         <View style={styles.container}>
@@ -18,17 +14,59 @@ const Home = () => {
                 <Text style={textStyles.header}>굿바이코로나</Text>
             </View>
             <View style={styles.body}>
-                
-                <TouchableOpacity onPress={() => setShowPreventionRule(true)}>
-                    <Image source={require('../../assets/prevention.png')} style={styles.modalImage}/>
-                </TouchableOpacity>
-                
-                <TouchableOpacity onPress={() => setSymptom(true)}>
-                    <Image source={require('../../assets/symptom.png')} style={styles.modalImage}/>
-                </TouchableOpacity>
+
+                <View style={styles.area}>
+                    <View style={styles.titleContainer}>
+                        <Text style={textStyles.title}>코로나19 예방수칙</Text>
+                    </View>
+                    <View style={styles.rowContainer}>
+                        <View style={styles.row}>
+                            <Text style={textStyles.normal}>1. 비누로 30초 이상 </Text>
+                            <Text style={textStyles.bold}>'꼼꼼하게 손씻기'</Text>
+                        </View>
+                        <View style={styles.row}>
+                            <Text style={textStyles.normal}>2. 씻지 않은 손으로 눈, 코, 입</Text>
+                            <Text style={textStyles.bold}> '만지지 않기'</Text>
+                        </View>
+                        <View style={styles.row}>
+                            <Text style={textStyles.normal}>3. 기침할 때는 옷소매로</Text>
+                            <Text style={textStyles.bold}> '입과 코를 가리기'</Text>
+                        </View>
+                        <View style={styles.row}>
+                            <Text style={textStyles.normal}>4. 발열·호흡기 증상자와</Text>
+                            <Text style={textStyles.bold}> '접촉 피하기'</Text>
+                        </View>
+                        <View style={styles.row}>
+                            <Text style={textStyles.normal}>5. 행사·모임, 사람 많은 곳</Text>
+                            <Text style={textStyles.bold}> '방문 자제'</Text>
+                        </View>
+                        <View style={styles.row}>
+                            <Text style={textStyles.normal}>6. 의료기관 방문 시</Text>
+                            <Text style={textStyles.bold}> '마스크 착용하기'</Text>
+                        </View>
+                    </View>
+
+                </View>
+                <View style={styles.area}>
+                    <View style={styles.titleContainer2}>
+                        <Text style={textStyles.title}>코로나19 증상</Text>
+                    </View>
+                    <View style={styles.rowContainer}>
+                        <View style={styles.col}>
+                            <Text style={textStyles.normal}>공통적인 증상은 다음과 같습니다.</Text>
+                        </View>
+                        <View style={styles.col}>
+                            <Text style={textStyles.bold}> - 발열, 마른기침, 피로감</Text>
+                        </View>
+                        <View style={styles.col}>
+                            <Text style={textStyles.normal}>심각한 증상은 다음과 같습니다.</Text>
+                        </View>
+                        <View style={styles.col}>
+                            <Text style={textStyles.bold}> - 호흡 곤란, 숨 가쁨, 가슴 통증 또는 압박</Text>
+                        </View>
+                    </View>
+                </View>
             </View>
-            {showPreventionRule && <PreventionRuleModal modalClose={()=>setShowPreventionRule(false)}/>}
-            {showSymptom && <SymptomModal modalClose={()=>setSymptom(false)}/>}
         </View>
     );
 }
@@ -38,6 +76,37 @@ const styles = StyleSheet.create({
         flex: 1,
         position: 'relative'
     },
+    titleContainer: {
+        borderWidth: 2,
+        borderRadius: 2,
+        borderColor: 'gray',
+        position: 'absolute',
+        zIndex: 1,
+        backgroundColor: 'orange',
+        padding: 4,
+        paddingHorizontal: 10,
+        marginLeft: 9
+    },
+    titleContainer2: {
+        borderWidth: 2,
+        borderRadius: 2,
+        borderColor: 'gray',
+        position: 'absolute',
+        zIndex: 1,
+        backgroundColor: 'red',
+        padding: 4,
+        paddingHorizontal: 10,
+        marginLeft: 9
+    },
+    rowContainer: {
+        borderWidth: 2,
+        borderRadius: 5,
+        borderColor: 'gray',
+        marginTop: 20,
+        paddingVertical: 20,
+        //position: 'absolute',
+        //...StyleSheet.absoluteFillObject,
+    },
     header: {
         backgroundColor: 'white',
         flexDirection: 'row',
@@ -45,24 +114,30 @@ const styles = StyleSheet.create({
         height: screenHeight * 0.1,
         alignItems: 'center'
     },
+    area: {
+        backgroundColor: 'white',
+        padding: 10,
+        borderRadius: 10,
+        margin: 3
+    },
     image: {
         width: 40,
         height: 40
-    },
-    modalImage: {
-        width: screenWidth*0.45,
-        height: screenWidth*0.45,
-        backgroundColor: 'white',
-        borderRadius: 10
     },
     body: {
         padding: 10,
         marginTop: 3,
         backgroundColor: '#f9fbfd',
         flex: 1,
-        justifyContent: 'space-between',
-        flexDirection:'row'
+        justifyContent: 'flex-start'
     },
+    row: {
+        flexDirection: 'row',
+        padding: 3
+    },
+    col: {
+        padding: 3
+    }
 });
 
 const textStyles = StyleSheet.create({
@@ -72,6 +147,18 @@ const textStyles = StyleSheet.create({
     },
     desc: {
         fontSize: standardFontSize * 1.2
+    },
+    title: {
+        fontSize: standardFontSize * 1.8,
+        color: 'white'
+    },
+    normal: {
+        fontSize: standardFontSize * 1.5,
+        color: FONT_GRAY.color
+    },
+    bold: {
+        fontSize: standardFontSize * 1.5,
+        fontWeight: '700'
     }
 });
 

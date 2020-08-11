@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         backgroundColor:'white',
         padding:5,
         paddingBottom: 0,
-        backgroundColor: '#e8eaec'
+        backgroundColor: '#e8eaec',
     },
     row: {
         flexDirection: 'row',
@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         height: screenHeight*0.08,
-        alignItems: 'center'
+        alignItems: 'center',
+        borderRadius: 7,
     },
     refresh: {
         justifyContent: 'center'

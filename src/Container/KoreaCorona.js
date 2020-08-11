@@ -38,17 +38,10 @@ const KoreaCorona = () => {
     return (
         <ScrollView style={styles.container}>
             <KoreaTotal totalData={totalData} />
-            <KoreaCharts chartData={{}} />
+            <KoreaCharts regionsData={regionsData} totalData={totalData}/>
             <KoreaRegions regionsData={regionsData} />
         </ScrollView>
     );
-
-    // return (
-    //     <ScrollView style={styles.container}>
-    //         <KoreaTotal totalData={totalData} />
-    //         <KoreaRegions regionsData={regionsData} />
-    //     </ScrollView>
-    // );
 }
 
 const styles = StyleSheet.create({
