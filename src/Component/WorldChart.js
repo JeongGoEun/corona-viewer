@@ -9,12 +9,12 @@ import Swiper from 'react-native-swiper/src';
 
 const WorldChart= ({worldMapData}) => {
 
-    // const worldMapDataList = worldMapData.map((data) => {
-    //     return [data.Name, data.totalCases]
-    // })
-    const worldMapDataList = worldDataByRegion.map((data) => {
-        return [data.Name, data['확진자수']]
+    const worldMapDataList = worldMapData.map((data) => {
+        return [data.Name, data.totalCases]
     })
+    // const worldMapDataList = worldDataByRegion.map((data) => {
+    //     return [data.Name, data['확진자수']]
+    // })
 
     const worldRankData = worldDataByRegion.slice(0, 4).map((data, index) => {
         return [data.Name, data['확진자수'], data['사망자수'], data['완치자수']]
