@@ -17,7 +17,7 @@ const KoreaCorona = () => {
             )
             .then(res => res.json())
             .then(res => {
-                console.log(res)
+                //console.log(res)
                 setTotalData(res)
             })
             .catch(err => console.log(err))
@@ -29,7 +29,7 @@ const KoreaCorona = () => {
             )
             .then(res => res.json())
             .then(res => {
-                console.log(res)
+                //console.log(res)
                 setRegionsData(res)
             })
             .catch(err => console.log(err))
@@ -38,7 +38,7 @@ const KoreaCorona = () => {
     return (
         <ScrollView style={styles.container}>
             <KoreaTotal totalData={totalData} />
-            <KoreaCharts regionsData={regionsData} totalData={totalData}/>
+            <KoreaCharts regionsData={regionsData} />
             <KoreaRegions regionsData={regionsData} />
         </ScrollView>
     );

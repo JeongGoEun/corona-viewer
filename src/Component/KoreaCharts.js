@@ -4,21 +4,17 @@ import PropTypes from 'prop-types';
 import Region from './Region';
 import Swiper from 'react-native-swiper/src';
 import { Chart } from "react-google-charts";
-
-// example
-import { koreaDataByRegion } from '../sampleData';
 import { standardFontSize, screenHeight, screenWidth } from '../constant';
-
-// 프로그래스바 참고
-//https://www.npmjs.com/package/react-native-multicolor-progress-bar
 import { ProgressBar } from 'react-native-multicolor-progress-bar';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const KoreaCharts = ({ regionsData, totalData }) => {
+// for test
+import { koreaDataByRegion } from '../sampleData';
 
+const KoreaCharts = ({ regionsData }) => {
     // for test
-    //const chartData = koreaDataByRegion;
-    const chartData = regionsData;
+    const chartData = koreaDataByRegion;
+    //const chartData = regionsData;
 
     // 한국 지역 코로나 데이터 - map의 value들을 arr로 변환해서
     const koreaMarkerdata = Object.keys(chartData).slice(3, 20).map((key) => {
@@ -41,36 +37,33 @@ const KoreaCharts = ({ regionsData, totalData }) => {
         ];
     }).sort((a, b) => b[1] - a[1]).filter(word => word[0] != '검역').slice(0, 5); //TOP 5
 
-    //console.log('KoreaCharts: ', koreaMarkerdata, koreaBarchartData);
-
     const getProgressCharts = Object.keys(chartData).map((key) => {
         var total = parseInt(chartData[key].totalCase.replace(",", ""));
         var recover = parseInt(chartData[key].recovered.replace(",", ""));
         var death = parseInt(chartData[key].death.replace(",", ""));
         var isolation = total - (recover + death);
-        //console.log(total, recover/total, death/total, isolation/total);
 
         return [
-            <View style={styles.progressContainer}>
-                <Text style={{fontWeight: '600'}}>[{chartData[key].countryName}]</Text>
-                <View style={{flexDirection:'row', marginVertical: 2}}>
-                    <Text style={styles.progressText}>격리자수: {isolation} / </Text>
+            <View style={styles.progressContainer} key={chartData[key].countryName}>
+                <Text style={{fontWeight: '600'}}>[{chartData[key].countryName}] {total}명</Text>
+                <View style={{flexDirection:'row', marginVertical: 3}}>
+                    <Text style={styles.progressText}>( 격리자수: {isolation} / </Text>
                     <Text style={styles.progressText}>완치자수: {recover} / </Text>
-                    <Text style={styles.progressText}>사망자수: {death}</Text>
+                    <Text style={styles.progressText}>사망자수: {death} )</Text>
                 </View>
                 <ProgressBar
-                    backgroundBarStyle={{ height: 15, borderRadius: 5 }}
+                    backgroundBarStyle={{ height: 15 }}
                     arrayOfProgressObjects={[
                         {
-                            color: '#F7DC6F',
+                            color: '#F4D03F',
                             value: isolation / total,
                         },
                         {
-                            color: '#A2D9CE',
+                            color: '#1ABC9C',
                             value: recover/total,
                         },
                         {
-                            color: '#EC7063',
+                            color: '#E74C3C',
                             value: death/total,
                         },
                     ]}
@@ -81,8 +74,11 @@ const KoreaCharts = ({ regionsData, totalData }) => {
 
     return (
         <View style={styles.wrapper}>
+            <View style={styles.localTitle}>
+                <Text style={textStyles.localTitle}>지역 별 상세현황</Text>
+            </View>
             <Swiper showsButtons={true}>
-                <ScrollView style={{height: screenHeight * 0.8, padding: 10}}>
+                <ScrollView style={{height: screenHeight * 0.8}}>
                     {getProgressCharts}
                 </ScrollView>
 
@@ -154,9 +150,20 @@ const styles = StyleSheet.create({
     },
     progressContainer:{
         backgroundColor:'#fff',
-        margin: 10,
+        marginHorizontal: 20,
+        marginBottom: 10,
         padding: 10,
         borderRadius: 5,
+    },
+    localTitle: {
+        marginHorizontal: 20, 
+        backgroundColor:'#F4F6F6', 
+        padding: 10,
+        marginBottom: 10,
+        alignItems: 'center',
+        borderWidth: 2,
+        borderColor: 'gray',
+        borderRadius: 3,
     },
     text: {
         color: '#fff',
@@ -175,6 +182,11 @@ const textStyles = StyleSheet.create({
     title: {
         fontSize: standardFontSize * 1.2,
         padding: 3
+    },
+    localTitle: {
+        fontSize: 15,
+        fontWeight: 600,
+        color: 'red'
     }
 });
 
