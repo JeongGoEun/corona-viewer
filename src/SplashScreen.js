@@ -18,11 +18,13 @@ const SplashScreen = ({navigation}) => {
         <View style={styles.container}>
             <TypeWriter 
                 typing={1}
-                maxDelay={200}
-                minDelay={200}
+                maxDelay={150}
+                minDelay={150}
                 onTypingEnd={onTypingEnd}
                 style={textStyles.title}>GoodBye Corona!</TypeWriter>
-            <Image source={require('../assets/splashLogo.png')} style={styles.image} />
+            <Image 
+                source={{uri: 'https://media.tenor.com/images/12300eb4fdf142fe46fbce62e1b74c0e/tenor.gif'}}  
+                style={styles.image} />
         </View>
     );
 }
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#121b34'
+        backgroundColor: 'white'
     },
     image: {
         height: screenHeight*0.5,
@@ -42,8 +44,9 @@ const styles = StyleSheet.create({
 
 const textStyles = StyleSheet.create({
     title: {
-        color: 'white',
-        fontSize: standardFontSize*2
+        color: '#5F76E8',
+        fontSize: standardFontSize*2,
+        margin:20
     }
 });
 
