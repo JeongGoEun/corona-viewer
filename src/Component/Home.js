@@ -18,14 +18,19 @@ const Home = () => {
                 <Text style={textStyles.header}>굿바이코로나</Text>
             </View>
             <View style={styles.body}>
+                <View style={styles.touchableContainer}>
+                    <TouchableOpacity onPress={() => setShowPreventionRule(true)}>
+                        <Image source={require('../../assets/prevention.png')} style={[styles.modalImage, styles.preventionBorder]}/>
+                    </TouchableOpacity>
+                    <Text style={textStyles.touchableTitle}>예방수칙</Text>
+                </View>
                 
-                <TouchableOpacity onPress={() => setShowPreventionRule(true)}>
-                    <Image source={require('../../assets/prevention.png')} style={styles.modalImage}/>
-                </TouchableOpacity>
-                
-                <TouchableOpacity onPress={() => setSymptom(true)}>
-                    <Image source={require('../../assets/symptom.png')} style={styles.modalImage}/>
-                </TouchableOpacity>
+                <View style={styles.touchableContainer}>
+                    <TouchableOpacity onPress={() => setSymptom(true)}>
+                        <Image source={require('../../assets/symptom.png')} style={[styles.modalImage, styles.symtomBorder]}/>
+                    </TouchableOpacity>
+                    <Text style={textStyles.touchableTitle}>증상</Text>
+                </View>
             </View>
             {showPreventionRule && <PreventionRuleModal modalClose={()=>setShowPreventionRule(false)}/>}
             {showSymptom && <SymptomModal modalClose={()=>setSymptom(false)}/>}
@@ -45,6 +50,11 @@ const styles = StyleSheet.create({
         height: screenHeight * 0.1,
         alignItems: 'center'
     },
+    touchableContainer: {
+        flex:1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     image: {
         width: 40,
         height: 40
@@ -53,7 +63,8 @@ const styles = StyleSheet.create({
         width: screenWidth*0.45,
         height: screenWidth*0.45,
         backgroundColor: 'white',
-        borderRadius: 10
+        borderRadius: 100,
+        borderWidth: 4,
     },
     body: {
         padding: 10,
@@ -63,6 +74,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection:'row'
     },
+    preventionBorder: {
+        borderColor: '#F9E79F'
+    },
+    symtomBorder: {
+        
+        borderColor: '#F5B7B1'
+    }
 });
 
 const textStyles = StyleSheet.create({
@@ -72,6 +90,10 @@ const textStyles = StyleSheet.create({
     },
     desc: {
         fontSize: standardFontSize * 1.2
+    },
+    touchableTitle: {
+        fontWeight: '600',
+        marginTop: 10,
     }
 });
 
