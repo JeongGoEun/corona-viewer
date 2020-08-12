@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 const textStyles = StyleSheet.create({
     localTitle: {
         fontSize: 15,
-        fontWeight: 600,
+        fontWeight: '600',
         color: 'red'
     }
 });

@@ -10,7 +10,7 @@ import Dead from './Dead';
 import Healing from './Healing';
 
 const KoreaTotal = ({ totalData }) => {
-
+    console.log(totalData)
     return (
         <View style={styles.container}>
             <View style={styles.header}>
