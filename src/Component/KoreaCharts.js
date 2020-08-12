@@ -40,6 +40,14 @@ const KoreaCharts = ({ regionsData, daysData }) => {
         ];
     }).sort((a, b) => b[1] - a[1]).filter(word => word[0] != '검역').slice(0, 5); //TOP 5
 
+    const koreaLineChartData = daysData.map((data, index) => {
+        // 전일 대비 증가 추이
+        let diff = (index == 0) ? 1 : (data[3] - daysData[index - 1][3]);
+        
+        // 날짜, 확진자, 전일대비, 완치자, 사망자
+        return [data[0], data[3], diff, data[4], data[1]];
+    })
+
     const getProgressCharts = Object.keys(chartData).map((key) => {
         var total = parseInt(chartData[key].totalCase.replace(",", ""));
         var recover = parseInt(chartData[key].recovered.replace(",", ""));
@@ -48,8 +56,8 @@ const KoreaCharts = ({ regionsData, daysData }) => {
 
         return [
             <View style={styles.progressContainer} key={chartData[key].countryName}>
-                <Text style={{fontWeight: '600'}}>[{chartData[key].countryName}] {total}명</Text>
-                <View style={{flexDirection:'row', marginVertical: 3}}>
+                <Text style={{ fontWeight: '600' }}>[{chartData[key].countryName}] {total}명</Text>
+                <View style={{ flexDirection: 'row', marginVertical: 3 }}>
                     <Text style={textStyles.progressText}>( 격리자수: {isolation} / </Text>
                     <Text style={textStyles.progressText}>완치자수: {recover} / </Text>
                     <Text style={textStyles.progressText}>사망자수: {death} )</Text>
@@ -63,11 +71,11 @@ const KoreaCharts = ({ regionsData, daysData }) => {
                         },
                         {
                             color: '#1ABC9C',
-                            value: recover/total,
+                            value: recover / total,
                         },
                         {
                             color: '#E74C3C',
-                            value: death/total,
+                            value: death / total,
                         },
                     ]}
                 />
@@ -81,7 +89,7 @@ const KoreaCharts = ({ regionsData, daysData }) => {
                 <Text style={textStyles.header}>지역별 상세현황 차트</Text>
             </View>
             <Swiper showsButtons showsPagination={false}>
-                <ScrollView style={{height: screenHeight * 0.7}}>
+                <ScrollView style={{ height: screenHeight * 0.7 }}>
                     {getProgressCharts}
                 </ScrollView>
 
@@ -130,6 +138,24 @@ const KoreaCharts = ({ regionsData, daysData }) => {
                         rootProps={{ 'data-testid': '2' }}
                     />
                 </View>
+
+                <View style={styles.chartContainer}>
+                    <Text style={textStyles.title}>한국 확진자, 전일대비, 완치자, 사망자 그래프</Text>
+                    <Chart
+                        width='100%'
+                        height='100%'
+                        chartType="LineChart"
+                        loader={<div>Loading Chart</div>}
+                        data={[
+                            ['날짜', '확진자', '전일대비', '완치자','사망자'],
+                            ...koreaLineChartData
+                        ]}
+                        options={{
+                            legend: { position: 'top' },
+                        }}
+                        rootProps={{ 'data-testid': '2' }}
+                    />
+                </View>
             </Swiper>
         </View>
 
@@ -138,19 +164,19 @@ const KoreaCharts = ({ regionsData, daysData }) => {
 
 const styles = StyleSheet.create({
     wrapper: {
-        height: screenHeight*0.7,
+        height: screenHeight * 0.7,
         padding: 10,
         marginVertical: 20,
     },
     header: {
-        backgroundColor:'#F8F9F9',
+        backgroundColor: '#F8F9F9',
         padding: 10,
         marginBottom: 10,
         alignItems: 'center',
         borderWidth: 2,
         borderColor: 'gray',
         borderRadius: 3,
-        height: screenHeight*0.06,
+        height: screenHeight * 0.06,
     },
     chartContainer: {
         backgroundColor: '#fff',
@@ -159,8 +185,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: screenHeight * 0.6,
     },
-    progressContainer:{
-        backgroundColor:'#fff',
+    progressContainer: {
+        backgroundColor: '#fff',
         marginBottom: 10,
         padding: 10,
         borderRadius: 5,
@@ -170,6 +196,7 @@ const styles = StyleSheet.create({
 const textStyles = StyleSheet.create({
     title: {
         fontSize: standardFontSize * 1.2,
+        fontWeight: '600',
         padding: 3
     },
     header: {
@@ -177,7 +204,7 @@ const textStyles = StyleSheet.create({
         fontWeight: '600',
         color: 'red'
     },
-    progressText:{
+    progressText: {
         fontSize: 5,
         color: '#808B96',
     },

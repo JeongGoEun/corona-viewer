@@ -3082,6 +3082,7 @@ export const koreaDataByRegion = {
     }
 };
 
+// 날짜, 사망자, 전일대비 증가, 확진자, 완치자
 export const koreaDataByDay = [
     [
         "2/1",
