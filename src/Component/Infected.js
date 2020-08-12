@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { serverUrl, totalCorona } from '../url';
-import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE } from '../constant'; 
+import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE, numberWithCommas } from '../constant'; 
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -11,10 +11,10 @@ const Infected = ({totalCase = 0, totalCaseBefore = 0, title='국내 확진자'}
         <View style={styles.container}>
             <View style={styles.left}>
                 <View style={styles.row}>
-                    <Text style={[FONT_ORANGE, textStyles.commonFont, textStyles.totalCase]}>{totalCase}명</Text>
+                    <Text style={[FONT_ORANGE, textStyles.commonFont, textStyles.totalCase]}>{numberWithCommas(totalCase)}명</Text>
                     <View style={{margin:'2%'}} />
                     <View style={styles.totalCaseBefore}>
-                        <Text style={textStyles.totalCaseBefore}>{totalCaseBefore>0? `+${totalCaseBefore}` : totalCaseBefore}명</Text>
+                        <Text style={textStyles.totalCaseBefore}>{totalCaseBefore>0? `+${numberWithCommas(totalCaseBefore)}` : numberWithCommas(totalCaseBefore)}명</Text>
                     </View>
                 </View>
                 <Text style={[textStyles.desc,FONT_GRAY]}>

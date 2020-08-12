@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { serverUrl, totalCorona } from '../url';
-import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE, FONT_GREEN, FONT_RED } from '../constant'; 
+import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE, FONT_GREEN, FONT_RED, numberWithCommas } from '../constant'; 
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -11,10 +11,10 @@ const Dead = ({totalDeath = 0, todayDeath = 0, title='국내 사망자'}) => {
         <View style={styles.container}>
             <View style={styles.left}>
                 <View style={styles.row}>
-                    <Text style={[FONT_RED, textStyles.commonFont, textStyles.totalCase]}>{totalDeath}명</Text>
+                    <Text style={[FONT_RED, textStyles.commonFont, textStyles.totalCase]}>{numberWithCommas(totalDeath)}명</Text>
                     <View style={{margin:'2%'}} />
                     <View style={styles.totalCaseBefore}>
-                        <Text style={textStyles.totalCaseBefore}>{todayDeath>0? `+${todayDeath}` : todayDeath}명</Text>
+                        <Text style={textStyles.totalCaseBefore}>{todayDeath>0? `+${numberWithCommas(todayDeath)}` : numberWithCommas(todayDeath)}명</Text>
                     </View>
                 </View>
                 <Text style={[textStyles.desc,FONT_GRAY]}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { serverUrl, totalCorona } from '../url';
-import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE } from '../constant'; 
+import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE, numberWithCommas } from '../constant'; 
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Infected from './Infected';
@@ -9,7 +9,7 @@ import Healed from './Healed';
 import Dead from './Dead';
 import Healing from './Healing';
 
-const WorldTotal = () => {
+const WorldTotal = ({worldTotalData}) => {
 
     return (
         <View style={styles.container}>
@@ -27,11 +27,11 @@ const WorldTotal = () => {
                 </TouchableOpacity>
             </View>
             <View style={{margin:'1%'}} />
-            <Infected totalCase='1,112,211' totalCaseBefore='10' title='전세계 확진자' />
+            <Infected totalCase={worldTotalData?.allVirus} totalCaseBefore={worldTotalData?.changeVirus} title='전세계 확진자' />
             <View style={{margin:'1%'}} />
-            <Healed totalRecovered='5,312' todayRecovered='3' title='전세계 완치자' />
+            <Healed totalRecovered={worldTotalData?.allRecovered} todayRecovered={worldTotalData?.changeRecovered} title='전세계 완치자' />
             <View style={{margin:'1%'}} />
-            <Dead totalDeath='500,951' todayDeath='10' title='전세계 사망자' />
+            <Dead totalDeath={worldTotalData?.allDeaths} todayDeath={worldTotalData?.changeDeaths} title='전세계 사망자' />
             <View style={{margin:'1%'}} />
         </View>
     );

@@ -2,11 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import WorldTotal from '../Component/WorldTotal';
 import WorldChart from '../Component/WorldChart';
-import { serverUrl, worldCorona } from '../url';
+import { serverUrl, worldCorona, worldCoronaCheck } from '../url';
 
 const WorldCorona = () => {
 
     const [worldMapData, setWorldMapData] = useState([]);
+    const [worldTotalData, setWorldTotalData] = useState(null);
+
+    useEffect(()=> {
+        fetch(serverUrl + worldCoronaCheck,
+            {method: 'get'}
+        )
+        .then(res => res.json())
+        .then(res => {
+            console.log(res)
+            setWorldTotalData(res)
+        })
+        .catch(err => console.log(err))
+    },[])
 
     useEffect(()=> {
         fetch(serverUrl + worldCorona,
@@ -23,7 +36,7 @@ const WorldCorona = () => {
 
     return (
         <ScrollView style={styles.container}>
-            <WorldTotal />
+            <WorldTotal worldTotalData={worldTotalData}/>
             <WorldChart worldMapData={worldMapData}/>
         </ScrollView>
     );

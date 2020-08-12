@@ -12,3 +12,7 @@ export const FONT_BLUE = { color : '#5f76e8' }
 export const FONT_BLUE2 = { color : '#006dd7' }
 export const FONT_GRAY = { color : '#7c8798' }
 
+
+export const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
