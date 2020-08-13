@@ -17,19 +17,25 @@ const Home = () => {
                 <Image source={require('../../assets/logo.JPG')} style={styles.image} />
                 <Text style={textStyles.header}>굿바이코로나</Text>
             </View>
-            <View style={styles.body}>
-                <View style={styles.touchableContainer}>
-                    <TouchableOpacity onPress={() => setShowPreventionRule(true)}>
-                        <Image source={require('../../assets/prevention.png')} style={[styles.modalImage, styles.preventionBorder]}/>
-                    </TouchableOpacity>
-                    <Text style={textStyles.touchableTitle}>예방수칙</Text>
+            <View style={{paddingTop: 30}}>
+                <View style={styles.gifContainer}>
+                    <Image source={'https://vrthumb.imagetoday.co.kr/2020/03/06/tid264t000560.jpg'} style={[styles.gifImage]} />
                 </View>
-                
-                <View style={styles.touchableContainer}>
-                    <TouchableOpacity onPress={() => setSymptom(true)}>
-                        <Image source={require('../../assets/symptom.png')} style={[styles.modalImage, styles.symtomBorder]}/>
-                    </TouchableOpacity>
-                    <Text style={textStyles.touchableTitle}>증상</Text>
+
+                <View style={styles.body}>
+                    <View style={styles.touchableContainer}>
+                        <TouchableOpacity onPress={() => setShowPreventionRule(true)}>
+                            <Image source={require('../../assets/prevention.png')} style={[styles.modalImage, styles.preventionBorder]}/>
+                        </TouchableOpacity>
+                        <Text style={textStyles.touchableTitle}>예방수칙</Text>
+                    </View>
+                    
+                    <View style={styles.touchableContainer}>
+                        <TouchableOpacity onPress={() => setSymptom(true)}>
+                            <Image source={require('../../assets/symptom.png')} style={[styles.modalImage, styles.symtomBorder]}/>
+                        </TouchableOpacity>
+                        <Text style={textStyles.touchableTitle}>증상</Text>
+                    </View>
                 </View>
             </View>
             {showPreventionRule && <PreventionRuleModal modalClose={()=>setShowPreventionRule(false)}/>}
@@ -41,7 +47,6 @@ const Home = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        position: 'relative'
     },
     header: {
         backgroundColor: 'white',
@@ -53,32 +58,44 @@ const styles = StyleSheet.create({
     touchableContainer: {
         flex:1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#f1f2f4',
+        paddingVertical: 20,
+    },
+    gifContainer: {
+        flex:1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative',
     },
     image: {
         width: 40,
         height: 40
     },
     modalImage: {
-        width: screenWidth*0.45,
-        height: screenWidth*0.45,
+        width: screenWidth*0.4,
+        height: screenWidth*0.4,
         backgroundColor: 'white',
-        borderRadius: 100,
+        borderRadius: 50,
         borderWidth: 4,
     },
+    gifImage: {
+        width: screenWidth*1,
+        height: screenWidth*0.6,
+        marginHorizontal: 14,
+        borderRadius: 10,
+    },
     body: {
+        marginTop: 20,
         padding: 10,
-        marginTop: 3,
-        backgroundColor: '#f9fbfd',
         flex: 1,
         justifyContent: 'space-between',
-        flexDirection:'row'
+        flexDirection:'row',
     },
     preventionBorder: {
         borderColor: '#F9E79F'
     },
     symtomBorder: {
-        
         borderColor: '#F5B7B1'
     }
 });
