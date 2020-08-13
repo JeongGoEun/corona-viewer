@@ -13,12 +13,12 @@ const WorldChart= ({worldMapData}) => {
         return [data.Name, data.totalCases]
     })
 
-    // const worldRankData = worldDataByRegion.slice(0, 4).map((data, index) => {
-    //     return [data.Name, data['확진자수'], data['사망자수'], data['완치자수']]
-    // })
+    const worldRankData = worldDataByRegion.slice(0, 4).map((data, index) => {
+        return [data.Name, data['확진자수'], data['사망자수'], data['완치자수']]
+    })
 
     // const worldRankData = worldMapData.slice(0, 4).map((data, index) => {
-    //     return [data.Name, numberWithCommas(data.totalCases), data.totalDeaths, data.totalRecovered]
+    //     return [data.Name, data.totalCases, data.totalDeaths, data.totalRecovered]
     // })
     const worldTableData = worldMapData.map((data) => {
         return [data.Name, `${numberWithCommas(data.totalCases)}명`, `${data.totalDeaths}명`, `${data.totalRecovered}명`]
