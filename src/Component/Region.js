@@ -9,9 +9,6 @@ const Region = ({regionData}) => {
         <View style={styles.container}>
             <View style={styles.titleRow}>
                 <Text style={[textStyles.commonFont, textStyles.county]}>{regionData?.countryName}</Text>
-                <TouchableOpacity style={styles.infoButton}>
-                    <Text style={[textStyles.commonFont, textStyles.info]}>(정보보기)</Text>
-                </TouchableOpacity>
             </View>
             <View style={styles.row}>
                 <Text style={[textStyles.commonFont, FONT_GRAY]}>확진자: </Text>

@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import { Chart } from "react-google-charts";
-import { standardFontSize, screenHeight } from '../constant';
+import { standardFontSize, screenHeight, numberWithCommas } from '../constant';
 import { worldDataByDate, worldDataByRegion } from '../sampleData';
 import ChartLoading from './ChartLoading';
 import Swiper from 'react-native-swiper/src';
@@ -12,15 +12,14 @@ const WorldChart= ({worldMapData}) => {
     const worldMapDataList = worldMapData.map((data) => {
         return [data.Name, data.totalCases]
     })
-    // const worldMapDataList = worldDataByRegion.map((data) => {
-    //     return [data.Name, data['확진자수']]
-    // })
 
     const worldRankData = worldDataByRegion.slice(0, 4).map((data, index) => {
         return [data.Name, data['확진자수'], data['사망자수'], data['완치자수']]
     })
 
-    //console.log(worldRankData)
+    const worldTableData = worldMapData.slice(0,15).map((data) => {
+        return [data.Name, `${numberWithCommas(data.totalCases)}명`, `${data.totalDeaths}명`, `${data.totalRecovered}명`]
+    })
 
     return (
         <View style={styles.wrapper}>
@@ -28,6 +27,29 @@ const WorldChart= ({worldMapData}) => {
                 <Text style={textStyles.header}>국가별 상세현황 차트</Text>
             </View>
             <Swiper showsButtons showsPagination={false}>
+                
+                <View style={styles.chartContainer}>
+                    <Text style={textStyles.title}>국가별 TOP15 코로나현황</Text>
+                    <Chart
+                        width='100%'
+                        height='100%'
+                        chartType="Table"
+                        loader={<ChartLoading />}
+                        data={[
+                            [
+                            { type: 'string', label: '국가'},
+                            { type: 'string', label: '확진자수' },
+                            { type: 'string', label: '사망자수' },
+                            { type: 'string', label: '완치자수' },
+                            ],
+                            ...worldTableData
+                        ]}
+                        options={{
+                            showRowNumber: false,
+                            chartArea: {'width': '80%', 'height': '50%'}
+                        }}
+                        rootProps={{ 'data-testid': '3' }}/>
+                </View>
                 <View style={styles.chartContainer}>
                     <Text style={textStyles.title}>국가별 발병 세계 지도(클릭시 상세정보)</Text>
                     <Chart
@@ -87,10 +109,9 @@ const WorldChart= ({worldMapData}) => {
                         }}
                         rootProps={{ 'data-testid': '1' }} />
                 </View>
-
             </Swiper>
         </View>
-    );
+    )
 }
 
 const styles = StyleSheet.create({
