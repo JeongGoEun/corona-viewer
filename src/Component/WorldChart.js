@@ -45,8 +45,7 @@ const WorldChart= ({worldMapData}) => {
                             ...worldTableData
                         ]}
                         options={{
-                            showRowNumber: false,
-                            chartArea: {'width': '80%', 'height': '50%'}
+                            showRowNumber: false
                         }}
                         rootProps={{ 'data-testid': '3' }}/>
                 </View>
