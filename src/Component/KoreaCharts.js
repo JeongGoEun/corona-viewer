@@ -8,16 +8,11 @@ import { standardFontSize, screenHeight, screenWidth } from '../constant';
 import { ProgressBar } from 'react-native-multicolor-progress-bar';
 import { ScrollView } from 'react-native-gesture-handler';
 
-// for test
-import { koreaDataByRegion } from '../sampleData';
-
 /**
  * @param { Object } regionsData 지역별 코로나 현황 데이터
  * @param { Array } daysData 일일별 코로나 확진자 수 데이터
  */
 const KoreaCharts = ({ regionsData, daysData }) => {
-    // for test
-    //const chartData = koreaDataByRegion;
     const chartData = regionsData;
 
     const koreaMarkerdata = Object.keys(chartData).slice(3, 20).map((key) => {
