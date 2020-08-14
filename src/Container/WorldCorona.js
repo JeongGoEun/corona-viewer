@@ -40,20 +40,13 @@ const WorldCorona = () => {
     useEffect(() => {
         if(!worldMapData) return;
 
-        const lists = worldMapData.slice(0,9).map((data) => {
-            console.log(data)
+        const lists = worldMapData.map((data) => {
             return {label: data.Name, value: data.Name}
         })
         setDropItems([{label: '전체', value: 'all'},...lists]);
     },[worldMapData])
 
-    useEffect(()=> {
-        console.log(dropItems)
-    },[dropItems])
-
     const onChange = (item) => {
-        console.log(item)
-
         if(item.value == 'all')
             return setFilteredData(worldMapData)
         
