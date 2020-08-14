@@ -13,23 +13,17 @@ const WorldChart= ({worldMapData}) => {
         return [data.Name, data.totalCases]
     })
 
-    const worldRankData = worldDataByRegion.slice(0, 4).map((data, index) => {
-        return [data.Name, data['확진자수'], data['사망자수'], data['완치자수']]
+    const worldRankData = worldMapData.slice(0, 5).map((data, index) => {
+        return [data.Name, data.totalCases, data.totalDeaths, data.totalRecovered]
     })
 
-    // const worldRankData = worldMapData.slice(0, 4).map((data, index) => {
-    //     return [data.Name, data.totalCases, data.totalDeaths, data.totalRecovered]
-    // })
-    const worldTableData = worldMapData.map((data) => {
-        return [data.Name, `${numberWithCommas(data.totalCases)}명`, `${data.totalDeaths}명`, `${data.totalRecovered}명`]
-    })
 
     return (
-        <ScrollView style={styles.wrapper}>
+        <View style={styles.wrapper}>
             <View style={styles.header}>
                 <Text style={textStyles.header}>국가별 상세현황 차트</Text>
             </View>
-            <Swiper showsButtons showsPagination={false} style={{height:screenHeight*0.55}}>
+            <Swiper showsButtons showsPagination={false} style={{height:screenHeight*0.6}}>
                 <View style={styles.chartContainer}>
                     <Text style={textStyles.title}>국가별 발병 세계 지도(클릭시 상세정보)</Text>
                     <Chart
@@ -90,23 +84,7 @@ const WorldChart= ({worldMapData}) => {
                         rootProps={{ 'data-testid': '1' }} />
                 </View>
             </Swiper>
-            <Chart
-                chartType="Table"
-                loader={<ChartLoading />}
-                data={[
-                    [
-                    { type: 'string', label: '국가'},
-                    { type: 'string', label: '확진자수' },
-                    { type: 'string', label: '사망자수' },
-                    { type: 'string', label: '완치자수' },
-                    ],
-                    ...worldTableData
-                ]}
-                options={{
-                    showRowNumber: false
-                }}
-                rootProps={{ 'data-testid': '3' }}/>
-        </ScrollView>
+        </View>
     )
 }
 
@@ -130,7 +108,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        height: screenHeight*0.5
+        height: screenHeight*0.6
     }
 });
 
