@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Platform, Button } from 'react-native';
 import { standardFontSize, screenHeight, koreaDropdownItems } from '../constant';
-
+import RegionPicker from './RegionPicker'
+ 
 import PropTypes from 'prop-types';
 import Region from './Region';
 import DropDownPicker from 'react-native-dropdown-picker'
@@ -28,19 +29,8 @@ const KoreaRegions = ({ regionsData }) => {
             </View>
 
             <View style={styles.dropContainerStyle}>
-                <DropDownPicker
-                    items={koreaDropdownItems}
-                    defaultValue={country}
-                    containerStyle={{ height: 40, zIndex: 1 }}
-                    style={{ backgroundColor: '#fafafa' }}
-                    placeholder='지역'
-                    itemStyle={{
-                        justifyContent: 'flex-start'
-                    }}
-                    dropDownStyle={{ backgroundColor: '#fafafa', }}
-                    onChangeItem={item => onChange(item)}
-                    zIndex={1}
-                />
+                <RegionPicker dropItems={koreaDropdownItems} onChange={onChange} defaultRegion='seoul'/>
+
             </View>
 
             <View>
