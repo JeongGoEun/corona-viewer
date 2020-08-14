@@ -6,7 +6,7 @@ import TypeWriter from 'react-native-typewriter'
 
 const SplashScreen = ({navigation}) => {
 
-
+    navigation.navigate('App')
     
     const onTypingEnd = () => {
         setTimeout(() => {

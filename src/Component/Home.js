@@ -68,6 +68,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'relative',
     },
+    body: {
+        marginTop: 20,
+        padding: 10,
+        flex: 1,
+        justifyContent: 'space-between',
+        flexDirection:'row',
+    },
     image: {
         width: 40,
         height: 40
@@ -84,13 +91,6 @@ const styles = StyleSheet.create({
         height: screenWidth*0.6,
         marginHorizontal: 14,
         borderRadius: 10,
-    },
-    body: {
-        marginTop: 20,
-        padding: 10,
-        flex: 1,
-        justifyContent: 'space-between',
-        flexDirection:'row',
     },
     preventionBorder: {
         borderColor: '#F9E79F'

@@ -4,14 +4,18 @@ import { standardFontSize, screenHeight, screenWidth } from '../constant';
 
 import PropTypes from 'prop-types';
 import Region from './Region';
+import DropDownPicker from 'react-native-dropdown-picker'
 
-const KoreaRegions = ({regionsData}) => {
+const KoreaRegions = ({ regionsData }) => {
+    const [country, setCountry] = useState('')
+    const [selectedDate, setDate] = useState('2020-08-14')
 
     return (
         <View style={styles.container}>
             <View style={styles.localTitle}>
-                <Text style={textStyles.localTitle}>지역 별 상세현황</Text>
+                <Text style={textStyles.localTitle}>지역 별 세부현황</Text>
             </View>
+
             <Region regionData={regionsData.seoul}/>
             <Region regionData={regionsData.busan}/>
             <Region regionData={regionsData.daegu}/>
@@ -37,17 +41,17 @@ const KoreaRegions = ({regionsData}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding:10
+        padding: 10
     },
     localTitle: {
-        backgroundColor:'#F8F9F9',
+        backgroundColor: '#F8F9F9',
         padding: 10,
         marginBottom: 10,
         alignItems: 'center',
         borderWidth: 2,
         borderColor: 'gray',
         borderRadius: 3,
-        height: screenHeight*0.06,
+        height: screenHeight * 0.06,
     },
 });
 

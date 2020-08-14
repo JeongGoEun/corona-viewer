@@ -1,39 +1,86 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
-import { Chart } from "react-google-charts";
 import { standardFontSize } from '../constant';
+import { koreaDataByDay } from '../sampleData';
+import * as CSV from 'csv-string';
 
-// for CanvasJS
-import CanvasJSReact from '../lib/canvasjs.react';
-var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+// //for CanvasJS
+// import CanvasJSReact from '../lib/canvasjs.react';
+// var CanvasJS = CanvasJSReact.CanvasJS;
+// var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const Setting = () => {
+    // const [dailyData, setDailyData] = useState({confirmed: [], death: [], released: []});
+    // const [dailyData, setDailyData] = useState({confirmed: [], death: [], released: []});
 
+
+    // useEffect(() => {
+    //     fetch('https://raw.githubusercontent.com/jooeungen/coronaboard_kr/master/kr_daily.csv',
+    //         { method: 'get' }
+    //     )
+    //     .then(res => res.text())
+    //     .then(res => {
+    //             let result = CSV.parse(res)
+
+    //             result.forEach((data, index) => {
+    //                 if (index == 0 || index > 5) return;
+
+    //                 let dayText = parseInt(data[0].substr(4, 2)) + '.' + data[0].substr(6, 2);
+    //                 let diffConfirm = (index == 1) ? data[1] : (data[1] - result[index - 1][1]);
+    //                 let diffdeath = (index == 1) ? data[2] : (data[2] - result[index - 1][2]);
+    //                 let diffrelease = (index == 1) ? data[3] : (data[3] - result[index - 1][3]);
+
+    //                 setDayData({
+    //                     confirmed: dayData.confirmed.push({ y: parseInt(diffConfirm), label: dayText.toString()}),
+    //                     death: dayData.death.push({y: parseInt(diffdeath), label: dayText.toString()}),
+    //                     released: dayData.released.push({y: parseInt(diffrelease), label: dayText.toString()}) 
+    //                 })
+    //                 console.log(dayData.confirmed.length);
+
+    //             })
+    //         })
+    //         .catch(err => console.log(err))
+    // }, [])
     return (
-        <ScrollView>
-            <View style={styles.chart}>
-                <Text style={textStyles.title}>CanvasJS Test</Text>
-                <CanvasJSChart 
-                    options = {{
-                        title: {
-                            text: 'Basic chart'
-                        },
-                        data: [{
-                            type: 'column',
-                            dataPoints: [
-                                { label: "Apple",  y: 10  },
-                                { label: "Orange", y: 15  },
-                                { label: "Banana", y: 25  },
-                                { label: "Mango",  y: 30  },
-                                { label: "Grape",  y: 28  }
-                            ]
-                        }]
-                    }}
-                />
-            </View>
-        </ScrollView>
+        <View>
+            {/* {dayData.confirmed.length == undefined && (<Text>Loading data</Text>)}
+            {dayData.confirmed.length != undefined && (
+                <ScrollView>
+                <View style={styles.chart}>
+                    <Text style={textStyles.title}>CanvasJS Test</Text>
+                    <CanvasJSChart
+                        options={{
+                            animationEnabled: true,
+                            toolTip: {
+                                shared: true
+                            },
+                            data: [{
+                                type: 'spline',
+                                name: "확진자",
+                                showInLegend: true,
+                                dataPoints: [dayData.confirmed]
+                                dataPoints: test
+    
+                            },
+                            {
+                                type: "spline",
+                                name: "사망자",
+                                showInLegend: true,
+                                dataPoints: [dayData.death]
+                            },
+                            {
+                                type: "spline",
+                                name: "완치자",
+                                showInLegend: true,
+                                dataPoints: [dayData.released]
+                            }]
+                        }}
+                    />
+                </View>
+            </ScrollView> 
+            )} */}
+        </View>
     );
 }
 
@@ -56,24 +103,3 @@ Setting.propTypes = {
 };
 
 export default Setting;
-
-/**
- * ['City', '확진자'],
-    ['서울', 36],
-    ['부산', 8],
-    ['대구', 6],
-    ['대전', 24],
-    ['광주', 12],
-    ['인천', 3],
-    ['울산', 3],
-    ['충청북도', 28],
-    ['충청남도', 15],
-    ['강원', 4],
-    ['경기', 35],
-    ['경상북도', 12],
-    ['경상남도', 12],
-    ["전라북도",  10],
-    ['전라남도',  10],
-    ['제주', 1],
-    ['세종',  10],
- */
