@@ -23,7 +23,7 @@ const WorldChart= ({worldMapData}) => {
             <View style={styles.header}>
                 <Text style={textStyles.header}>국가별 상세현황 차트</Text>
             </View>
-            <Swiper showsButtons showsPagination={false} style={{height:screenHeight*0.6}}>
+            <Swiper showsButtons showsPagination={false} style={{height:screenHeight*0.55}}>
                 <View style={styles.chartContainer}>
                     <Text style={textStyles.title}>국가별 발병 세계 지도(클릭시 상세정보)</Text>
                     <Chart
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        height: screenHeight*0.6
+        height: screenHeight*0.55
     }
 });
 

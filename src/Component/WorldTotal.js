@@ -11,6 +11,8 @@ import Healing from './Healing';
 
 const WorldTotal = ({worldTotalData}) => {
 
+    const today = new Date()
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -18,7 +20,7 @@ const WorldTotal = ({worldTotalData}) => {
             </View>
             <View style={{margin:'1%'}} />
             <View style={styles.row}>
-                <Text style={textStyles.updateTime}>코로나바이러스감염증-19 세계 발생현황 (8.7 00시 기준)</Text>
+                <Text style={textStyles.updateTime}>코로나바이러스감염증-19 세계 발생현황 {`${today.getMonth()+1}/${today.getDate()}일 기준`}</Text>
                 <TouchableOpacity style={styles.refresh}>
                         <Icon
                             name="refresh"

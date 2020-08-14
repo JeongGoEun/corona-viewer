@@ -8,7 +8,7 @@ import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-ta
 const WorldTable= ({worldMapData}) => {
 
     const tableHead = ['국가', '확진자수', '완치자수', '사망자수'];
-    const widthArr = [screenWidth*0.25, screenWidth*0.3, screenWidth*0.3, screenWidth*0.3 ]
+    const widthArr = [screenWidth*0.2, screenWidth*0.28, screenWidth*0.25, screenWidth*0.22 ]
     const tableData = worldMapData.map((data) => {
         return [data.Name, `${numberWithCommas(data.totalCases)}명`, `${numberWithCommas(data.totalDeaths)}명`, `${numberWithCommas(data.totalRecovered)}명`]
     })
@@ -42,7 +42,7 @@ const WorldTable= ({worldMapData}) => {
 }
 
 const styles = StyleSheet.create({
-    container: { height: screenHeight*0.8, backgroundColor: '#fff', padding: 10 },
+    container: { backgroundColor: '#fff', padding: 10 },
     header: { height: 50, backgroundColor: '#537791' },
     text: { textAlign: 'center', fontWeight: '100' },
     dataWrapper: { marginTop: -1 },
