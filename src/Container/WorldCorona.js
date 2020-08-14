@@ -4,11 +4,15 @@ import WorldTotal from '../Component/WorldTotal';
 import WorldChart from '../Component/WorldChart';
 import { serverUrl, worldCorona, worldCoronaCheck } from '../url';
 import WorldTable from '../Component/WorldTable';
+import RegionPicker from '../Component/RegionPicker';
+import { koreaDropdownItems, screenHeight } from '../constant';
 
 const WorldCorona = () => {
 
-    const [worldMapData, setWorldMapData] = useState([]);
     const [worldTotalData, setWorldTotalData] = useState(null);
+    const [worldMapData, setWorldMapData] = useState([]);
+    const [dropItems, setDropItems] = useState(null);
+    const [filteredData, setFilteredData] = useState([]);
 
     useEffect(()=> {
         fetch(serverUrl + worldCoronaCheck,
@@ -28,16 +32,52 @@ const WorldCorona = () => {
             .then(res => res.json())
             .then(res => {
                 setWorldMapData(res)
+                setFilteredData(res)
             })
             .catch(err => console.log(err))
     },[])
 
+    useEffect(() => {
+        if(!worldMapData) return;
+
+        const lists = worldMapData.slice(0,9).map((data) => {
+            console.log(data)
+            return {label: data.Name, value: data.Name}
+        })
+        setDropItems([{label: '전체', value: 'all'},...lists]);
+    },[worldMapData])
+
+    useEffect(()=> {
+        console.log(dropItems)
+    },[dropItems])
+
+    const onChange = (item) => {
+        console.log(item)
+
+        if(item.value == 'all')
+            return setFilteredData(worldMapData)
+        
+        setFilteredData(worldMapData.filter((data) => {
+            return data.Name == item.value
+        }))
+    }
 
     return (
         <ScrollView style={styles.container}>
             <WorldTotal worldTotalData={worldTotalData}/>
             <WorldChart worldMapData={worldMapData}/>
-            <WorldTable worldMapData={worldMapData}/>
+            <View style={styles.dropContainerStyle}>
+                {
+                    dropItems &&
+                    <RegionPicker 
+                        defaultRegion={null}
+                        dropItems={dropItems}
+                        onChange={onChange}
+                        placeholder='국가를 선택하세요'
+                        />
+                }
+            </View>
+            <WorldTable worldMapData={filteredData}/>
         </ScrollView>
     );
 }
@@ -45,6 +85,9 @@ const WorldCorona = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1
+    },
+    dropContainerStyle: {
+        zIndex: 1,
     }
 });
 
