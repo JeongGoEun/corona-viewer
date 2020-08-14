@@ -8,8 +8,6 @@ import DropDownPicker from 'react-native-dropdown-picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const RegionPicker = ({ dropItems, onChange, defaultRegion }) => {
-    const [country, setCountry] = useState('')
-
     return (
         <View>
             <DropDownPicker

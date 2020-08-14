@@ -113,7 +113,7 @@ const KoreaCharts = ({ regionsData, daysData }) => {
                 <View style={styles.chartContainer}>
                     <Text style={textStyles.title}>한국 확진자수 Geo chart</Text>
                     <Chart
-                        width='100%'
+                        width='130%'
                         height='100%'
                         chartType="GeoChart"
                         loader={<div>Loading Chart</div>}
@@ -125,9 +125,9 @@ const KoreaCharts = ({ regionsData, daysData }) => {
                             region: 'KR',
                             colorAxis: { colors: ['#FADBD8', '#EC7063', '#B03A2E'] },
                             backgroundColor: '#fff',
-                            datalessRegionColor: '#85C1E9',
-                            defaultColor: '#f5f5f5',
-                            displayMode: 'markers'
+                            datalessRegionColor: '#7DCEA0',
+                            defaultColor: '#7DCEA0',
+                            displayMode: 'markers',
                         }}
                         mapsApiKey="AIzaSyBMdWulC9vKMjat5WfDVp00AYsi-DLpB8Y"
                         rootProps={{ 'data-testid': '2' }}
@@ -179,6 +179,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: screenHeight * 0.6,
+        overflow: 'hidden'
     },
     progressContainer: {
         backgroundColor: '#fff',

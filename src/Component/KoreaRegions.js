@@ -5,34 +5,30 @@ import RegionPicker from './RegionPicker'
  
 import PropTypes from 'prop-types';
 import Region from './Region';
-import DropDownPicker from 'react-native-dropdown-picker'
 
 
 const KoreaRegions = ({ regionsData }) => {
     const [country, setCountry] = useState('seoul')
     
     const onChange = (item) => {
-        console.log(item);
+        //console.log(item);
         getRegionComponents(item.value)
         setCountry(item.value)
     }
 
     const getRegionComponents = (key) => {
-        console.log('getRegionComponents', regionsData[key]);
+        //console.log('getRegionComponents', regionsData[key]);
         return <Region regionData={regionsData[key]}/>
     }
 
     return (
         <View style={styles.container}>
             <View style={styles.localTitle}>
-                <Text style={textStyles.localTitle}>지역 별 세부현황</Text>
+                <Text style={textStyles.localTitle}>지역별 세부현황</Text>
             </View>
-
             <View style={styles.dropContainerStyle}>
                 <RegionPicker dropItems={koreaDropdownItems} onChange={onChange} defaultRegion='seoul'/>
-
             </View>
-
             <View>
                 {getRegionComponents(country)}
             </View>
