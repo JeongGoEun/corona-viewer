@@ -27,7 +27,6 @@ const WorldCorona = () => {
             )
             .then(res => res.json())
             .then(res => {
-                console.log(res)
                 setWorldMapData(res)
             })
             .catch(err => console.log(err))
