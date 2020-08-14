@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import { Chart } from "react-google-charts";
-import { standardFontSize, screenHeight } from '../constant';
+import { standardFontSize, screenHeight, numberWithCommas } from '../constant';
 import { worldDataByDate, worldDataByRegion } from '../sampleData';
 import ChartLoading from './ChartLoading';
 import Swiper from 'react-native-swiper/src';
@@ -12,22 +12,18 @@ const WorldChart= ({worldMapData}) => {
     const worldMapDataList = worldMapData.map((data) => {
         return [data.Name, data.totalCases]
     })
-    // const worldMapDataList = worldDataByRegion.map((data) => {
-    //     return [data.Name, data['확진자수']]
-    // })
 
-    const worldRankData = worldDataByRegion.slice(0, 4).map((data, index) => {
-        return [data.Name, data['확진자수'], data['사망자수'], data['완치자수']]
+    const worldRankData = worldMapData.slice(0, 5).map((data, index) => {
+        return [data.Name, data.totalCases, data.totalDeaths, data.totalRecovered]
     })
 
-    //console.log(worldRankData)
 
     return (
         <View style={styles.wrapper}>
             <View style={styles.header}>
                 <Text style={textStyles.header}>국가별 상세현황 차트</Text>
             </View>
-            <Swiper showsButtons showsPagination={false}>
+            <Swiper showsButtons showsPagination={false} style={{height:screenHeight*0.6}}>
                 <View style={styles.chartContainer}>
                     <Text style={textStyles.title}>국가별 발병 세계 지도(클릭시 상세정보)</Text>
                     <Chart
@@ -87,15 +83,13 @@ const WorldChart= ({worldMapData}) => {
                         }}
                         rootProps={{ 'data-testid': '1' }} />
                 </View>
-
             </Swiper>
         </View>
-    );
+    )
 }
 
 const styles = StyleSheet.create({
     wrapper: {
-        height: screenHeight*0.7,
         padding: 10,
         marginVertical: 20,
     },
@@ -114,7 +108,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        height: screenHeight * 0.6,
+        height: screenHeight*0.6
     }
 });
 

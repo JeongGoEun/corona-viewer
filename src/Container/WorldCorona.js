@@ -3,6 +3,7 @@ import { StyleSheet, View, ScrollView } from 'react-native';
 import WorldTotal from '../Component/WorldTotal';
 import WorldChart from '../Component/WorldChart';
 import { serverUrl, worldCorona, worldCoronaCheck } from '../url';
+import WorldTable from '../Component/WorldTable';
 
 const WorldCorona = () => {
 
@@ -15,7 +16,6 @@ const WorldCorona = () => {
         )
         .then(res => res.json())
         .then(res => {
-            console.log(res)
             setWorldTotalData(res)
         })
         .catch(err => console.log(err))
@@ -38,6 +38,7 @@ const WorldCorona = () => {
         <ScrollView style={styles.container}>
             <WorldTotal worldTotalData={worldTotalData}/>
             <WorldChart worldMapData={worldMapData}/>
+            <WorldTable worldMapData={worldMapData}/>
         </ScrollView>
     );
 }

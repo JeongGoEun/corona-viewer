@@ -63,7 +63,7 @@ const textStyles = StyleSheet.create({
         fontWeight:'600'
     },
     totalCase: {
-        fontSize:standardFontSize*3
+        fontSize:standardFontSize*2.5
     },
     totalCaseBefore: {
         color:'white',
