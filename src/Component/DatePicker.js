@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, CheckBox } from 'react-native';
 import { standardFontSize, screenHeight, screenWidth, yearItems, monthItems, dayItems } from '../constant';
 
 import PropTypes from 'prop-types';
@@ -7,16 +7,16 @@ import Region from './Region';
 import DropDownPicker from 'react-native-dropdown-picker'
 
 const DatePicker = ({ onChange }) => {
-    const today = new Date();
-    console.log(today.getFullYear(), today.getDate(), today.getMonth()+1);
+    //const today = new Date();
+    //console.log(today.getFullYear(), today.getDate(), today.getMonth()+1);
 
     return (
         <View style={styles.container}>
-            <Text style={textStyles.localTitle}>날짜 </Text>
+            <Text style={textStyles.localTitle}>날짜</Text>
             <View style={{ flex: 5, flexDirection: 'row' }}>
                 <DropDownPicker
                     items={yearItems}
-                    containerStyle={{ height: 35, flex: 5 }}
+                    containerStyle={{ height: 35, flex: 3 }}
                     style={{ backgroundColor: '#fafafa' }}
                     placeholder='-'
                     //defaultValue={today.getFullYear()}
@@ -29,7 +29,7 @@ const DatePicker = ({ onChange }) => {
                 <Text> 년 </Text>
                 <DropDownPicker
                     items={monthItems}
-                    containerStyle={{ height: 35, flex: 5 }}
+                    containerStyle={{ height: 35, flex: 2 }}
                     style={{ backgroundColor: '#fafafa' }}
                     placeholder='-'
                     //defaultValue={today.getMonth()+1}
@@ -43,7 +43,7 @@ const DatePicker = ({ onChange }) => {
 
                 <DropDownPicker
                     items={dayItems}
-                    containerStyle={{ height: 35, flex: 5 }}
+                    containerStyle={{ height: 35, flex: 2 }}
                     style={{ backgroundColor: '#fafafa' }}
                     placeholder='-'
                     //defaultValue={today.getDate()}
@@ -70,10 +70,8 @@ const textStyles = StyleSheet.create({
     localTitle: {
         fontSize: 15,
         fontWeight: '600',
-        alignContent: 'center',
-        justifyContent: 'center',
         flex: 1,
-        paddingHorizontal: 10,
+        padding: 5,
     }
 });
 

@@ -13,6 +13,7 @@ const KoreaCorona = () => {
 
     const [totalData, setTotalData] = useState({});
     const [regionsData, setRegionsData] = useState({});
+    //const [regionsDailyData, setRegionsDailyData] = useState({});
 
     useEffect(()=> {
         fetch(serverUrl + totalCorona,
@@ -37,6 +38,18 @@ const KoreaCorona = () => {
             })
             .catch(err => console.log(err))
     },[])
+
+    // useEffect(()=> {
+    //     fetch(serverUrl + regionCorona,
+    //             {method: 'get'}
+    //         )
+    //         .then(res => res.json())
+    //         .then(res => {
+    //             console.log(res)
+    //             setRegionsData(res)
+    //         })
+    //         .catch(err => console.log(err))
+    // },[])
 
     return (
         <ScrollView style={styles.container}>

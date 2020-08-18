@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, CheckBox } from 'react-native';
 import { standardFontSize, screenHeight, screenWidth } from '../constant';
 
 import PropTypes from 'prop-types';
@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
-        zIndex: 1,
+        alignContent: 'center',
+        justifyContent: 'center',
     },
 });
 
@@ -41,10 +42,8 @@ const textStyles = StyleSheet.create({
     localTitle: {
         fontSize: 15,
         fontWeight: '600',
-        alignContent: 'center',
-        justifyContent: 'center',
         flex: 1,
-        paddingHorizontal: 10,
+        padding: 5,
     }
 });
 

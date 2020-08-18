@@ -42,8 +42,8 @@ const KoreaTotal = ({ totalData }) => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 20,
-        paddingBottom: 10,
+        padding: 10,
+        paddingBottom: 0,
     },
     dataContainer: {
 

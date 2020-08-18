@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Platform, Button } from 'react-native';
-import { standardFontSize, screenHeight, koreaDropdownItems } from '../constant';
+import { StyleSheet, Text, View, Platform, CheckBox } from 'react-native';
+import { standardFontSize, screenHeight, koreaDropdownItems, FONT_GRAY } from '../constant';
 import RegionPicker from './RegionPicker'
 import DatePicker from './DatePicker'
  
 import PropTypes from 'prop-types';
 import Region from './Region';
-
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const KoreaRegions = ({ regionsData }) => {
     const [country, setCountry] = useState('seoul')
-    const [date, setDate] = useState({})
+    const [year, setYear] = useState('');
+    const [month, setMonth] = useState('');
+    const [day, setDay] = useState('');
+
 
     const onChange = (item) => {
         //console.log(item);
@@ -19,7 +22,12 @@ const KoreaRegions = ({ regionsData }) => {
     }
 
     const onDateChange = (item) => {
-        console.log(item);
+        switch(item.id) {
+            case 'year': setYear(item.value);   break;
+            case 'month': setMonth(item.value);  break;
+            case 'day': setDay(item.value);    break;
+        }
+        console.log(year, month, day);
     }
 
     const getRegionComponents = (key) => {
@@ -48,6 +56,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 10,
         height: screenHeight*0.5,
+        
     },
     localTitle: {
         backgroundColor: '#F8F9F9',

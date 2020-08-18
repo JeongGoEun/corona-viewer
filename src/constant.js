@@ -37,7 +37,7 @@ export const koreaDropdownItems = [
     { label: '울산', value: 'ulsan', },
 ]
 export const yearItems = [
-    { label: 2020, value: 2020},
+    { label: 2020, value: 2020, id: 'year'},
 ]
 
 export const monthItems = [
