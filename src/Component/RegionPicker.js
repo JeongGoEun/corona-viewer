@@ -8,13 +8,14 @@ import DropDownPicker from 'react-native-dropdown-picker'
 
 const RegionPicker = ({ dropItems, onChange, defaultRegion, placeholder='지역' }) => {
     return (
-        <View>
+        <View style={styles.container}>
+            <Text style={textStyles.localTitle}>지역 </Text>
             <DropDownPicker
                 items={dropItems}
                 searchablePlaceholder="검색하세요."
                 searchableError={() => <Text>일치하는 결과가 없습니다.</Text>}
                 searchable={true}
-                containerStyle={{ height: 40 }}
+                containerStyle={{ height: 40, flex: 4 }}
                 style={{ backgroundColor: '#fafafa' }}
                 defaultValue={defaultRegion}
                 placeholder={placeholder}
@@ -31,17 +32,7 @@ const RegionPicker = ({ dropItems, onChange, defaultRegion, placeholder='지역'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 10
-    },
-    localTitle: {
-        backgroundColor: '#F8F9F9',
-        padding: 10,
-        marginBottom: 10,
-        alignItems: 'center',
-        borderWidth: 2,
-        borderColor: 'gray',
-        borderRadius: 3,
-        height: screenHeight * 0.06,
+        flexDirection: 'row',
     },
 });
 
@@ -49,7 +40,10 @@ const textStyles = StyleSheet.create({
     localTitle: {
         fontSize: 15,
         fontWeight: '600',
-        color: 'red'
+        alignContent: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        padding: 10,
     }
 });
 
