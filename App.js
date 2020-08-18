@@ -60,13 +60,13 @@ const App = () => {
                     ),
                     tabBarLabel: '세계현황'}}/>
             <Tab.Screen 
-                name="설정" 
+                name="출처" 
                 component={Setting}
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="move-h-a" size={size} color={color} />
                     ),
-                    tabBarLabel: '설정'}} />
+                    tabBarLabel: '출처'}} />
             
         </Tab.Navigator>
     );

@@ -5,10 +5,8 @@ import { standardFontSize, screenHeight, screenWidth } from '../constant';
 import PropTypes from 'prop-types';
 import Region from './Region';
 import DropDownPicker from 'react-native-dropdown-picker'
-import DateTimePicker from '@react-native-community/datetimepicker';
 
 const RegionPicker = ({ dropItems, onChange, defaultRegion, placeholder='지역' }) => {
-
     return (
         <View>
             <DropDownPicker
