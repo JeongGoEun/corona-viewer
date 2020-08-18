@@ -15,7 +15,7 @@ const RegionPicker = ({ dropItems, onChange, defaultRegion, placeholder='지역'
                 searchablePlaceholder="검색하세요."
                 searchableError={() => <Text>일치하는 결과가 없습니다.</Text>}
                 searchable={true}
-                containerStyle={{ height: 40, flex: 4 }}
+                containerStyle={{ height: 35, flex: 5 }}
                 style={{ backgroundColor: '#fafafa' }}
                 defaultValue={defaultRegion}
                 placeholder={placeholder}
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
+        zIndex: 1,
     },
 });
 
@@ -43,7 +44,7 @@ const textStyles = StyleSheet.create({
         alignContent: 'center',
         justifyContent: 'center',
         flex: 1,
-        padding: 10,
+        paddingHorizontal: 10,
     }
 });
 

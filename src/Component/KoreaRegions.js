@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Platform, Button } from 'react-native';
 import { standardFontSize, screenHeight, koreaDropdownItems } from '../constant';
 import RegionPicker from './RegionPicker'
+import DatePicker from './DatePicker'
  
 import PropTypes from 'prop-types';
 import Region from './Region';
@@ -9,11 +10,16 @@ import Region from './Region';
 
 const KoreaRegions = ({ regionsData }) => {
     const [country, setCountry] = useState('seoul')
-    
+    const [date, setDate] = useState({})
+
     const onChange = (item) => {
         //console.log(item);
         getRegionComponents(item.value)
         setCountry(item.value)
+    }
+
+    const onDateChange = (item) => {
+        console.log(item);
     }
 
     const getRegionComponents = (key) => {
@@ -28,6 +34,7 @@ const KoreaRegions = ({ regionsData }) => {
             </View>
             <View style={styles.dropContainerStyle}>
                 <RegionPicker dropItems={koreaDropdownItems} onChange={onChange} defaultRegion='seoul'/>
+                <DatePicker onChange={onDateChange}/>
             </View>
             <View>
                 {getRegionComponents(country)}
@@ -39,9 +46,8 @@ const KoreaRegions = ({ regionsData }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 10,
+        paddingHorizontal: 10,
         height: screenHeight*0.5,
-
     },
     localTitle: {
         backgroundColor: '#F8F9F9',
@@ -56,7 +62,7 @@ const styles = StyleSheet.create({
     dropContainerStyle: {
         flex:1,
         zIndex: 1,
-    }
+    },
 });
 
 const textStyles = StyleSheet.create({
