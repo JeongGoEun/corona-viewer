@@ -11,7 +11,7 @@ import { serverUrl, koreaDailyCorona } from '../url';
 
 const KoreaRegions = ({ regionsTotalData }) => {
     const [country, setCountry] = useState('seoul')
-    const [dateChecked, setDateCheckBox] = useState(true);
+    const [dateChecked, setDateCheckBox] = useState(false);
     const [regionDailyData, setRegionDailyData] = useState([]);
     const [regionCompData, setRegionCompData] = useState({...regionsTotalData['seoul']});
     const [regionDate, setRegionDate] = useState({year:'', month: '', day: ''});
@@ -25,6 +25,9 @@ const KoreaRegions = ({ regionsTotalData }) => {
                 setRegionDailyData(res);
             })
             .catch(err => console.log(err));
+    },[])
+
+    useEffect(()=> {
         setDateCheckBox(dateChecked);
         setRegionDate(regionDate);
 
@@ -61,7 +64,7 @@ const KoreaRegions = ({ regionsTotalData }) => {
                 dateArr = [...dateArr, data];
             }
         })
-        console.log(dateStr, dateArr);
+        //console.log(dateStr, dateArr);
 
         dateArr.map((data, idx) => {
             data.confirmed = data.confirmed == "" ? 0 : data.confirmed;
