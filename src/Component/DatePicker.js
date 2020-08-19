@@ -26,7 +26,7 @@ const DatePicker = ({ onChange }) => {
                     dropDownStyle={{ backgroundColor: '#fafafa' }}
                     onChangeItem={item => { onChange(item) }}
                 />
-                <Text> 년 </Text>
+                <Text style={{textAlign: 'center'}}> 년 </Text>
                 <DropDownPicker
                     items={monthItems}
                     containerStyle={{ height: 35, flex: 2 }}

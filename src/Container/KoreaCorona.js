@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, ScrollView, TouchableOpacity, Text } from 'react-native';
-import { serverUrl, totalCorona, regionCorona, koreaDaily, koreaRegionalDaily } from '../url';
+import { serverUrl, totalCorona, regionCorona } from '../url';
 
 import KoreaTotal from '../Component/KoreaTotal';
 import KoreaRegions from '../Component/KoreaRegions';
@@ -13,7 +13,6 @@ const KoreaCorona = () => {
 
     const [totalData, setTotalData] = useState({});
     const [regionsData, setRegionsData] = useState({});
-    //const [regionsDailyData, setRegionsDailyData] = useState({});
 
     useEffect(()=> {
         fetch(serverUrl + totalCorona,
@@ -33,28 +32,16 @@ const KoreaCorona = () => {
             )
             .then(res => res.json())
             .then(res => {
-                console.log(res)
+                //console.log(res)
                 setRegionsData(res)
             })
             .catch(err => console.log(err))
     },[])
 
-    // useEffect(()=> {
-    //     fetch(serverUrl + regionCorona,
-    //             {method: 'get'}
-    //         )
-    //         .then(res => res.json())
-    //         .then(res => {
-    //             console.log(res)
-    //             setRegionsData(res)
-    //         })
-    //         .catch(err => console.log(err))
-    // },[])
-
     return (
         <ScrollView style={styles.container}>
             <KoreaTotal totalData={totalData} />
-            <KoreaRegions regionsData={regionsData} />
+            {regionsData && <KoreaRegions regionsTotalData={regionsData} />}
             <KoreaCharts regionsData={regionsData} daysData={koreaDataByDay}/>
         </ScrollView>
     );

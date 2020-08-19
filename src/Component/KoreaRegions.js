@@ -3,49 +3,111 @@ import { StyleSheet, Text, View, Platform, CheckBox } from 'react-native';
 import { standardFontSize, screenHeight, koreaDropdownItems, FONT_GRAY } from '../constant';
 import RegionPicker from './RegionPicker'
 import DatePicker from './DatePicker'
- 
+
 import PropTypes from 'prop-types';
 import Region from './Region';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 
-const KoreaRegions = ({ regionsData }) => {
+import { serverUrl, koreaDailyCorona } from '../url';
+
+const KoreaRegions = ({ regionsTotalData }) => {
     const [country, setCountry] = useState('seoul')
-    const [year, setYear] = useState('');
-    const [month, setMonth] = useState('');
-    const [day, setDay] = useState('');
+    const [dateChecked, setDateCheckBox] = useState(true);
+    const [regionDailyData, setRegionDailyData] = useState([]);
+    const [regionCompData, setRegionCompData] = useState({...regionsTotalData['seoul']});
+    const [regionDate, setRegionDate] = useState({year:'', month: '', day: ''});
+    
 
+    useEffect(()=> {
+        fetch(serverUrl + koreaDailyCorona + '?country_name=' + country,
+            { method: 'get' })
+            .then(res => res.json())
+            .then(res => {
+                setRegionDailyData(res);
+            })
+            .catch(err => console.log(err));
+        setDateCheckBox(dateChecked);
+        setRegionDate(regionDate);
 
-    const onChange = (item) => {
-        //console.log(item);
-        getRegionComponents(item.value)
-        setCountry(item.value)
-    }
-
-    const onDateChange = (item) => {
-        switch(item.id) {
-            case 'year': setYear(item.value);   break;
-            case 'month': setMonth(item.value);  break;
-            case 'day': setDay(item.value);    break;
+        if(!dateChecked) {
+            setRegionCompData(regionsTotalData[country]);
+        }else{
+            var rtn = filterDateData();
+            setRegionCompData(rtn);
         }
-        console.log(year, month, day);
+    },[regionsTotalData[country], dateChecked, regionDate])
+
+    const onChangeRegion = (item) => {
+        setCountry(item.value);
+    }
+    
+    const onChangeDate = (item) => {
+        var val = (item.value < 10) ? '0'+item.value+'' : item.value+'';
+
+        if(item.id=='year') {
+            setRegionDate({...regionDate, year: val});
+        }else if(item.id=='month') {
+            setRegionDate({...regionDate, month: val});
+        }else{
+            setRegionDate({...regionDate, day: val});
+        }
+        // console.log(rtn, regionCompData);
+    }
+    const filterDateData = () => {
+        
+        var dateStr = regionDate.year + regionDate.month + regionDate.day, totalCase=0, recovered=0, death=0, percentage=0.0, countryName='';
+        var dateArr = [];
+        regionDailyData.map((data) => {
+            if(data.update_time.substring(0,dateStr.length) == dateStr) {
+                dateArr = [...dateArr, data];
+            }
+        })
+        console.log(dateStr, dateArr);
+
+        dateArr.map((data, idx) => {
+            data.confirmed = data.confirmed == "" ? 0 : data.confirmed;
+            data.released = data.released == "" ? 0 : data.released;
+            data.death = data.death == "" ? 0 : data.death;
+
+            if(idx == 0) {
+                totalCase += parseInt(data.confirmed);
+                recovered += parseInt(data.released);
+                death += parseInt(data.death);
+            }else{
+                totalCase += parseInt(data.confirmed - dateArr[idx-1].confirmed);
+                recovered += parseInt(data.released - dateArr[idx-1].released);
+                death += parseInt(data.death - dateArr[idx-1].death);
+            }
+            countryName = data.country_name
+        })        
+        return ({countryName:countryName,totalCase: totalCase, recovered: recovered, death: death, percentage: percentage});
     }
 
-    const getRegionComponents = (key) => {
-        //console.log('getRegionComponents', regionsData[key]);
-        return <Region regionData={regionsData[key]}/>
+    const getRegionComponents = () => {
+        //console.log(regionCompData);
+        return <Region regionData={regionCompData} />
     }
-
     return (
         <View style={styles.container}>
             <View style={styles.localTitle}>
                 <Text style={textStyles.localTitle}>지역별 세부현황</Text>
             </View>
             <View style={styles.dropContainerStyle}>
-                <RegionPicker dropItems={koreaDropdownItems} onChange={onChange} defaultRegion='seoul'/>
-                <DatePicker onChange={onDateChange}/>
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <RegionPicker dropItems={koreaDropdownItems} onChange={onChangeRegion} defaultRegion='seoul' />
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end', paddingTop: 7 }}>
+                        <Text>날짜 선택</Text>
+                        <CheckBox
+                            disabled={false}
+                            value={dateChecked}
+                            onValueChange={(newValue) => {if(newValue == false) {setRegionDate({year:'', month: '', day: ''}); setRegionCompData(regionsTotalData[country]);} setDateCheckBox(newValue)}}
+                            standardFontSize={20}
+                        />
+                    </View>
+                </View>
+                {dateChecked && <DatePicker onChange={onChangeDate} />}
             </View>
             <View>
-                {getRegionComponents(country)}
+                {getRegionComponents()}
             </View>
         </View>
     );
@@ -55,8 +117,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: 10,
-        height: screenHeight*0.5,
-        
+        height: screenHeight * 0.5,
+
     },
     localTitle: {
         backgroundColor: '#F8F9F9',
@@ -69,7 +131,7 @@ const styles = StyleSheet.create({
         height: screenHeight * 0.06,
     },
     dropContainerStyle: {
-        flex:1,
+        flex: 1,
         zIndex: 1,
     },
 });
