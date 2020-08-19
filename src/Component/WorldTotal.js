@@ -1,17 +1,18 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import { serverUrl, totalCorona } from '../url';
-import { standardFontSize, screenHeight, FONT_GRAY, FONT_ORANGE, numberWithCommas } from '../constant'; 
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
+import { standardFontSize, screenHeight} from '../constant'; 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Infected from './Infected';
 import Healed from './Healed';
 import Dead from './Dead';
-import Healing from './Healing';
+import TextInputMask from 'react-native-text-input-mask';
 
 const WorldTotal = ({worldTotalData}) => {
 
     const today = new Date()
+
+    const [dateText, setDateText] = useState('');
 
     return (
         <View style={styles.container}>
@@ -19,6 +20,15 @@ const WorldTotal = ({worldTotalData}) => {
                 <Text style={[textStyles.title, textStyles.commonFont]}>세계 현황판</Text>
             </View>
             <View style={{margin:'1%'}} />
+            <View style={styles.textInput}>
+                <TextInput 
+                    onChangeText={text => setDateText(text)}
+                    value={dateText}
+                    style={{fontSize: standardFontSize*1.5, height: '100%'}}
+                    placeholder='날짜를 입력하세요'
+                    />
+                <FontAwesome5 name="search" size={20} color='black' onPress={() => alert('조회')}/>
+            </View>
             <View style={styles.row}>
                 <Text style={textStyles.updateTime}>코로나바이러스감염증-19 세계 발생현황 {`${today.getMonth()+1}/${today.getDate()}일 기준`}</Text>
                 <TouchableOpacity style={styles.refresh}>
@@ -60,6 +70,14 @@ const styles = StyleSheet.create({
     },
     refresh: {
         justifyContent: 'center'
+    },
+    textInput: {
+        backgroundColor: 'white',
+        height: screenHeight*0.05,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: 5
     }
 });
 
@@ -72,6 +90,9 @@ const textStyles = StyleSheet.create({
     },
     updateTime: {
         fontSize: standardFontSize*0.8
+    },
+    dateText: {
+        fontSize: standardFontSize*1.2
     }
 
 });
