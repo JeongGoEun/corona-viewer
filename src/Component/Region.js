@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         padding: 15,
         backgroundColor: 'white',
         height: screenHeight*0.25,
-        marginBottom: 30,
+        marginBottom: 10,
         borderRadius: 7,
     },
     titleRow: {
