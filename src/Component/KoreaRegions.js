@@ -84,7 +84,9 @@ const KoreaRegions = ({ regionsTotalData }) => {
             countryName = data.country_name
         })
         percentage = (totalCase/koreaRegionsPopulation[country]*100000);
-        newCase = dateArr[dateArr.length-1].confirmed - dateArr[dateArr.length-2].confirmed;
+
+        if(dateArr.length > 1)
+            newCase = dateArr[dateArr.length-1].confirmed - dateArr[dateArr.length-2].confirmed;
 
         return ({
             countryName:countryName,
@@ -122,6 +124,11 @@ const KoreaRegions = ({ regionsTotalData }) => {
             </View>
             <View>
                 {getRegionComponents()}
+            </View>
+            <View style={{alignItems: 'flex-end'}}>
+                <Text style={{fontSize: 8}}>
+                    *발생률: 10만명당 발생률 (=확진자/지역인구 * 100,000)
+                </Text>
             </View>
         </View>
     );

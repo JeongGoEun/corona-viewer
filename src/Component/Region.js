@@ -61,7 +61,7 @@ const textStyles =  StyleSheet.create({
         fontWeight:'600'
     },
     county: {
-        fontSize: standardFontSize*1.8
+        fontSize: standardFontSize*2.0
     }, 
     info: {
         fontSize: standardFontSize*1.8,
