@@ -25,6 +25,7 @@ const DatePicker = ({ onChange }) => {
                     }}
                     dropDownStyle={{ backgroundColor: '#fafafa' }}
                     onChangeItem={item => { onChange(item) }}
+                    zIndex={-1}
                 />
                 <Text style={{textAlign: 'center'}}> 년 </Text>
                 <DropDownPicker
@@ -38,6 +39,7 @@ const DatePicker = ({ onChange }) => {
                     }}
                     dropDownStyle={{ backgroundColor: '#fafafa' }}
                     onChangeItem={item => onChange(item)}
+                    zIndex={-1}
                 />
                 <Text> 월 </Text>
 
@@ -52,6 +54,7 @@ const DatePicker = ({ onChange }) => {
                     }}
                     dropDownStyle={{ backgroundColor: '#fafafa' }}
                     onChangeItem={item => onChange(item)}
+                    zIndex={-1}
                 />
                 <Text> 일 </Text>
             </View>

@@ -35,9 +35,10 @@ const KoreaRegions = ({ regionsTotalData }) => {
             setRegionCompData(regionsTotalData[country]);
         }else{
             var rtn = filterDateData();
+            console.log(rtn);
             setRegionCompData(rtn);
         }
-    },[regionsTotalData[country], country, dateChecked, regionDate])
+    },[regionsTotalData[country], regionDailyData, country, dateChecked, regionDate])
 
     const onChangeRegion = (item) => {
         setCountry(item.value);
@@ -95,14 +96,14 @@ const KoreaRegions = ({ regionsTotalData }) => {
                 <Text style={textStyles.localTitle}>지역별 세부현황</Text>
             </View>
             <View style={styles.dropContainerStyle}>
-                <View style={{ flex: 1, flexDirection: 'row' }}>
+                <View style={{ flex: 1, flexDirection: 'row', zIndex: 100 }}>
                     <RegionPicker dropItems={koreaDropdownItems} onChange={onChangeRegion} defaultRegion='seoul' />
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end', paddingTop: 7 }}>
                         <Text>날짜 선택</Text>
                         <CheckBox
                             disabled={false}
                             value={dateChecked}
-                            onValueChange={(newValue) => {if(newValue == false) {setRegionDate({year:'', month: '', day: ''}); } setDateCheckBox(newValue)}}
+                            onValueChange={(newValue) => {if(newValue == false) {setRegionDate({year:'', month: '', day: ''});} setDateCheckBox(newValue)}}
                             standardFontSize={20}
                         />
                     </View>
