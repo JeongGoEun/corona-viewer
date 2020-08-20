@@ -64,7 +64,7 @@ const App = () => {
                 component={Setting}
                 options={{
                     tabBarIcon: ({ color, size }) => (
-                        <Icon name="move-h-a" size={size} color={color} />
+                        <Icon name="bookmark-alt" size={size} color={color} />
                     ),
                     tabBarLabel: '출처'}} />
             

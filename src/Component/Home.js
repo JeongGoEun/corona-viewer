@@ -14,7 +14,7 @@ const Home = () => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Image source={require('../../assets/logo.JPG')} style={styles.image} />
+                <Image source={require('../../assets/hand_logo.png')} style={styles.image} />
                 <Text style={textStyles.header}>굿바이코로나</Text>
             </View>
             <View style={{paddingTop: 30}}>
@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
     },
     image: {
         width: 40,
-        height: 40
+        height: 40,
+        marginRight: 5,
     },
     modalImage: {
         width: screenWidth*0.4,

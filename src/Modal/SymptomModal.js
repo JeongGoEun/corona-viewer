@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'red',
         padding: 4,
         paddingHorizontal: 10,
+        marginLeft: 8,
     },
     area: {
         backgroundColor: 'white',
