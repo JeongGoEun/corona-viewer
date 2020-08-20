@@ -106,7 +106,7 @@ export const koreaRegionsPopulation = {
 
 export const coronaSourceInfo = [
     {name: 'livecode API', url: 'https://github.com/LiveCoronaDetector/livecod'},
-    {name: 'coronaboard API', url: 'https://github.com/LiveCoronaDetector/livecod'},   
+    {name: 'coronaboard API', url: 'https://github.com/jooeungen/coronaboard_kr'},   
 ]
 
 export const coronaReferenceInfo = [
