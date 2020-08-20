@@ -21,7 +21,7 @@ const WorldChart= ({worldMapData}) => {
     return (
         <View style={styles.wrapper}>
             <View style={styles.header}>
-                <Text style={textStyles.header}>국가별 상세현황 차트</Text>
+                <Text style={textStyles.header}>국가별 코로나현황 차트</Text>
             </View>
             <Swiper showsButtons showsPagination={false} style={{height:screenHeight*0.55}}>
                 <View style={styles.chartContainer}>
@@ -91,7 +91,7 @@ const WorldChart= ({worldMapData}) => {
 const styles = StyleSheet.create({
     wrapper: {
         padding: 10,
-        marginVertical: 20,
+        marginVertical: 10,
     },
     header: {
         backgroundColor:'#F8F9F9',

@@ -15,10 +15,13 @@ const WorldTable= ({worldMapData}) => {
 
     return (
         <View style={styles.container}>
+            <View style={styles.header}>
+                <Text style={textStyles.header}>국가별 코로나현황 테이블</Text>
+            </View>
             <ScrollView horizontal={true}>
                 <View>
                     <Table borderStyle={{borderWidth: 1, borderColor: '#C1C0B9'}}>
-                        <Row data={tableHead} widthArr={widthArr} style={styles.header} textStyle={styles.text}/>
+                        <Row data={tableHead} widthArr={widthArr} style={styles.tableHeader} textStyle={styles.text}/>
                     </Table>
                     <ScrollView style={styles.dataWrapper}>
                     <Table borderStyle={{borderWidth: 1, borderColor: '#C1C0B9'}}>
@@ -42,8 +45,18 @@ const WorldTable= ({worldMapData}) => {
 }
 
 const styles = StyleSheet.create({
-    container: { backgroundColor: '#fff', padding: 10 },
-    header: { height: 50, backgroundColor: '#537791' },
+    container: { padding: 10, height: screenHeight*0.8 },
+    tableHeader: { height: 50, backgroundColor: '#537791' },
+    header: {
+        backgroundColor:'#F8F9F9',
+        padding: 10,
+        marginBottom: 10,
+        alignItems: 'center',
+        borderWidth: 2,
+        borderColor: 'gray',
+        borderRadius: 3,
+        height: screenHeight*0.06,
+    },
     text: { textAlign: 'center', fontWeight: '100' },
     dataWrapper: { marginTop: -1 },
     row: { height: 40, backgroundColor: '#E7E6E1' },
@@ -51,6 +64,11 @@ const styles = StyleSheet.create({
 });
 
 const textStyles = StyleSheet.create({
+    header: {
+        fontSize: 15,
+        fontWeight: '600',
+        color: 'red'
+    }
 });
 
 WorldTable.propTypes = {

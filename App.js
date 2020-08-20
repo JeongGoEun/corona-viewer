@@ -4,12 +4,12 @@ import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import KoreaCorona from './src/Container/KoreaCorona';
-import WorldCorona from './src/Container/WorldCorona';
 import Home from './src/Component/Home';
 import Icon from 'react-native-vector-icons/Fontisto';
 import Setting from './src/Component/Setting';
 import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from './src/SplashScreen';
+import WorldNavigator from './src/Navigator/WorldNavigator';
 
 
 const Tab = createBottomTabNavigator();
@@ -53,7 +53,7 @@ const App = () => {
                 />
             <Tab.Screen 
                 name="세계현황" 
-                component={WorldCorona} 
+                component={WorldNavigator} 
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="world-o" size={size} color={color} />

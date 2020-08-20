@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { standardFontSize, screenHeight} from '../constant'; 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -19,15 +19,6 @@ const WorldTotal = ({worldTotalData}) => {
                 <Text style={[textStyles.title, textStyles.commonFont]}>세계 현황판</Text>
             </View>
             <View style={{margin:'1%'}} />
-            <View style={styles.textInput}>
-                <TextInput 
-                    onChangeText={text => setDateText(text)}
-                    value={dateText}
-                    style={{fontSize: standardFontSize*1.5, height: '100%'}}
-                    placeholder='날짜를 입력하세요'
-                    />
-                <FontAwesome5 name="search" size={20} color='black' onPress={() => alert('조회')}/>
-            </View>
             <View style={styles.row}>
                 <Text style={textStyles.updateTime}>코로나바이러스감염증-19 세계 발생현황 {`${today.getMonth()+1}/${today.getDate()}일 기준`}</Text>
                 <TouchableOpacity style={styles.refresh}>
@@ -69,14 +60,6 @@ const styles = StyleSheet.create({
     },
     refresh: {
         justifyContent: 'center'
-    },
-    textInput: {
-        backgroundColor: 'white',
-        height: screenHeight*0.05,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: 5
     }
 });
 
