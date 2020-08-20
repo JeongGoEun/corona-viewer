@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Platform, CheckBox } from 'react-native';
-import { standardFontSize, screenHeight, koreaDropdownItems, FONT_GRAY } from '../constant';
+import { standardFontSize, screenHeight, koreaDropdownItems, koreaRegionsPopulation } from '../constant';
 import RegionPicker from './RegionPicker'
 import DatePicker from './DatePicker'
 
@@ -35,7 +35,7 @@ const KoreaRegions = ({ regionsTotalData }) => {
             setRegionCompData(regionsTotalData[country]);
         }else{
             var rtn = filterDateData();
-            console.log(rtn);
+            //console.log(rtn);
             setRegionCompData(rtn);
         }
     },[regionsTotalData[country], regionDailyData, country, dateChecked, regionDate])
@@ -58,7 +58,7 @@ const KoreaRegions = ({ regionsTotalData }) => {
     }
     const filterDateData = () => {
         
-        var dateStr = regionDate.year + regionDate.month + regionDate.day, totalCase=0, recovered=0, death=0, percentage=0.0, countryName='';
+        var dateStr = regionDate.year + regionDate.month + regionDate.day, totalCase=0, recovered=0, death=0, percentage=0.0, countryName='', newCase=0;
         var dateArr = [];
         regionDailyData.map((data) => {
             if(data.update_time.substring(0,dateStr.length) == dateStr) {
@@ -68,9 +68,9 @@ const KoreaRegions = ({ regionsTotalData }) => {
         //console.log(dateStr, dateArr);
 
         dateArr.map((data, idx) => {
-            data.confirmed = data.confirmed == "" ? 0 : data.confirmed;
-            data.released = data.released == "" ? 0 : data.released;
-            data.death = data.death == "" ? 0 : data.death;
+            dateArr[idx].confirmed = data.confirmed == "" ? 0 : data.confirmed;
+            dateArr[idx].released = data.released == "" ? 0 : data.released;
+            dateArr[idx].death = data.death == "" ? 0 : data.death;
 
             if(idx == 0) {
                 totalCase += parseInt(data.confirmed);
@@ -82,8 +82,18 @@ const KoreaRegions = ({ regionsTotalData }) => {
                 death += parseInt(data.death - dateArr[idx-1].death);
             }
             countryName = data.country_name
-        })        
-        return ({countryName:countryName,totalCase: totalCase, recovered: recovered, death: death, percentage: percentage});
+        })
+        percentage = (totalCase/koreaRegionsPopulation[country]*100000);
+        newCase = dateArr[dateArr.length-1].confirmed - dateArr[dateArr.length-2].confirmed;
+
+        return ({
+            countryName:countryName,
+            totalCase: totalCase, 
+            recovered: recovered, 
+            death: death, 
+            percentage: percentage.toFixed(2),
+            newCase: newCase,
+        });
     }
 
     const getRegionComponents = () => {
@@ -96,7 +106,7 @@ const KoreaRegions = ({ regionsTotalData }) => {
                 <Text style={textStyles.localTitle}>지역별 세부현황</Text>
             </View>
             <View style={styles.dropContainerStyle}>
-                <View style={{ flex: 1, flexDirection: 'row', zIndex: 100 }}>
+                <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10 }}>
                     <RegionPicker dropItems={koreaDropdownItems} onChange={onChangeRegion} defaultRegion='seoul' />
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end', paddingTop: 7 }}>
                         <Text>날짜 선택</Text>

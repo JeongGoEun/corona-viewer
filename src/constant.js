@@ -1,4 +1,5 @@
 import {Dimensions } from "react-native";
+import KoreaRegions from "./Component/KoreaRegions";
 
 export const standardFontSize = 10;
 export const screenHeight = Math.round(Dimensions.get('window').height);
@@ -82,3 +83,23 @@ export const dayItems = [
     { label: 30, value: 30, id: 'day' },
     { label: 31, value: 31, id: 'day' },
 ]
+
+export const koreaRegionsPopulation = {
+    "gyeonggi":13351891,
+    "jeonbuk":1808044,
+    "gangwon":1540094,
+    "gwangju":1454709,
+    "ulsan":1141362,
+    "sejong":346217,
+    "chungbuk":1597936,
+    "seoul":9715429,
+    "gyeongnam":3347637,
+    "chungnam":2120692,
+    "daejeon":1470225,
+    "busan":3402776,
+    "gyeongbuk":2644001,
+    "jeju":671913,
+    "incheon":2945565,
+    "jeonnam":1853339,
+    "deagu":2428022
+}
