@@ -33,9 +33,6 @@ const KoreaTotal = ({ totalData }) => {
             <View style={{margin:'1%'}} />
             <Dead totalDeath={totalData.TotalDeath} todayDeath={totalData.TodayDeath}/>
             <View style={{margin:'1%'}} />
-            <Text  style={{textAlign: 'right'}} onPress={() => Linking.openURL('http://localhost:3000/')}>
-                지도보기
-            </Text>
         </View>
     );
 }

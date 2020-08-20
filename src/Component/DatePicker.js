@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         marginBottom: 10,
+        zIndex: -1,
     },
 });
 

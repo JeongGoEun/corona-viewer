@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 10,
         height: screenHeight * 0.6,
-
+        marginVertical: 30,
     },
     localTitle: {
         backgroundColor: '#F8F9F9',
