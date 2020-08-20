@@ -103,3 +103,15 @@ export const koreaRegionsPopulation = {
     "jeonnam":1853339,
     "deagu":2428022
 }
+
+export const coronaSourceInfo = [
+    {name: 'livecode API', url: 'https://github.com/LiveCoronaDetector/livecod'},
+    {name: 'coronaboard API', url: 'https://github.com/LiveCoronaDetector/livecod'},   
+]
+
+export const coronaReferenceInfo = [
+    {name: 'google chart', url: 'https://developers.google.com/chart'},
+    {name: 'google datastudio', url: 'https://datastudio.google.com/'},
+    {name: 'livecorona', url: 'https://livecorona.co.kr/'},
+    {name: 'coronaboard', url: 'https://coronaboard.kr/'}, 
+]

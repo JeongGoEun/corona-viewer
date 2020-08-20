@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'orange',
         padding: 4,
         paddingHorizontal: 10,
+        marginLeft: 8
     },
     closeButton: {
         position: 'absolute',
