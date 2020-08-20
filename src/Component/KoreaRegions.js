@@ -25,19 +25,19 @@ const KoreaRegions = ({ regionsTotalData }) => {
                 setRegionDailyData(res);
             })
             .catch(err => console.log(err));
-    },[])
+    },[country])
 
     useEffect(()=> {
         setDateCheckBox(dateChecked);
         setRegionDate(regionDate);
-
+        console.log(country, dateChecked);
         if(!dateChecked) {
             setRegionCompData(regionsTotalData[country]);
         }else{
             var rtn = filterDateData();
             setRegionCompData(rtn);
         }
-    },[regionsTotalData[country], dateChecked, regionDate])
+    },[regionsTotalData[country], country, dateChecked, regionDate])
 
     const onChangeRegion = (item) => {
         setCountry(item.value);
@@ -102,7 +102,7 @@ const KoreaRegions = ({ regionsTotalData }) => {
                         <CheckBox
                             disabled={false}
                             value={dateChecked}
-                            onValueChange={(newValue) => {if(newValue == false) {setRegionDate({year:'', month: '', day: ''}); setRegionCompData(regionsTotalData[country]);} setDateCheckBox(newValue)}}
+                            onValueChange={(newValue) => {if(newValue == false) {setRegionDate({year:'', month: '', day: ''}); } setDateCheckBox(newValue)}}
                             standardFontSize={20}
                         />
                     </View>
