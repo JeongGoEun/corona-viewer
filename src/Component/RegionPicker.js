@@ -24,6 +24,7 @@ const RegionPicker = ({ dropItems, onChange, defaultRegion, placeholder='지역'
                 }}
                 dropDownStyle={{ backgroundColor: '#fafafa' }}
                 onChangeItem={item => onChange(item)}
+                zIndex= {10}
             />
         </View>
     );
@@ -35,6 +36,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignContent: 'center',
         justifyContent: 'center',
+        position: 'relative'
     },
 });
 
