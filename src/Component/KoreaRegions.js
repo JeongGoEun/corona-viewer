@@ -116,7 +116,7 @@ const KoreaRegions = ({ regionsTotalData }) => {
                             disabled={false}
                             value={dateChecked}
                             onValueChange={(newValue) => {if(newValue == false) {setRegionDate({year:'', month: '', day: ''});} setDateCheckBox(newValue)}}
-                            standardFontSize={20}
+                            standardFontSize={30}
                         />
                     </View>
                 </View>

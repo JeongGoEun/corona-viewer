@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
     row: {
         flex: 0.8,
         flexDirection: 'row',
-        justifyContent:'flex-start'
+        justifyContent:'flex-start',
+        marginVertical: 2,
     },
     infoButton : {
         justifyContent: 'center'
@@ -61,7 +62,7 @@ const textStyles =  StyleSheet.create({
         fontWeight:'600'
     },
     county: {
-        fontSize: standardFontSize*2.0
+        fontSize: 'large'
     }, 
     info: {
         fontSize: standardFontSize*1.8,
