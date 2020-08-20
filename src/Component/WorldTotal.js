@@ -6,7 +6,6 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Infected from './Infected';
 import Healed from './Healed';
 import Dead from './Dead';
-import TextInputMask from 'react-native-text-input-mask';
 
 const WorldTotal = ({worldTotalData}) => {
 
