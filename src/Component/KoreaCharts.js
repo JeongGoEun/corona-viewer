@@ -30,8 +30,8 @@ const KoreaCharts = ({ regionsData, daysData }) => {
         return [
             chartData[key].countryName,
             total,
-            recover,
-            death
+            death,
+            recover
         ];
     }).sort((a, b) => b[1] - a[1]).filter(word => word[0] != '검역').slice(0, 5); //TOP 5
 
@@ -96,7 +96,7 @@ const KoreaCharts = ({ regionsData, daysData }) => {
                         chartType="BarChart"
                         loader={<div>Loading Chart</div>}
                         data={[
-                            ['지역', '확진자', '완치자', '사망자'],
+                            ['지역', '확진자', '사망자', '완치자'],
                             ...koreaBarchartData
                         ]}
                         options={{
